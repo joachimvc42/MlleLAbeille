@@ -1,26 +1,247 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ---------------------------------------------------------------------------
+   MlleLAbeille design tokens
+   Dusty rose is the voice, honey is the sparkle, cream is the air.
+--------------------------------------------------------------------------- */
+@theme {
+  /* Brand */
+  --color-rose: #c98781;
+  --color-rose-deep: #b26e68;
+  --color-rose-ink: #9d5f59;
+  --color-rose-soft: #eccfcb;
+  --color-rose-whisper: #f7e9e6;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-honey: #e3b351;
+  --color-honey-deep: #c99a3c;
+  --color-honey-soft: #f2dfae;
+  --color-honey-whisper: #faf0d8;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Airs & backgrounds */
+  --color-cream: #fbf4e8;
+  --color-ivory: #fffcf4;
+  --color-paper: #f6edda;
+  --color-sage: #cfd9c5;
+  --color-sage-soft: #e4ebdd;
+  --color-sky: #d9e7ef;
+  --color-sky-soft: #eaf2f7;
+  --color-lavender: #e4dded;
+  --color-blush: #f6e7df;
+
+  /* Type */
+  --font-display: var(--font-lora), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-quicksand), ui-rounded, "Avenir Next", system-ui, sans-serif;
+
+  /* Shape & depth */
+  --radius-blob: 2.5rem;
+  --radius-tag: 2rem;
+  --shadow-plush: 0 18px 45px rgba(125, 93, 72, 0.1);
+  --shadow-plush-lg: 0 26px 60px rgba(125, 93, 72, 0.14);
+  --shadow-hover: 0 22px 55px rgba(125, 93, 72, 0.16);
+
+  /* Motion */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 8s ease-in-out infinite;
+  --animate-wings: wings 3.2s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-7px);
+    }
+  }
+  @keyframes wings {
+    0%,
+    100% {
+      transform: scaleY(1) rotate(0deg);
+    }
+    50% {
+      transform: scaleY(0.94) rotate(-1.2deg);
+    }
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  color: var(--color-rose-ink);
+  background-color: var(--color-cream);
+  background-image:
+    radial-gradient(circle at 12% 15%, rgba(227, 179, 81, 0.13), transparent 28%),
+    radial-gradient(circle at 85% 18%, rgba(207, 217, 197, 0.22), transparent 32%),
+    radial-gradient(circle at 75% 82%, rgba(217, 231, 239, 0.24), transparent 34%),
+    radial-gradient(circle at 18% 80%, rgba(246, 231, 223, 0.35), transparent 30%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain of textured paper, breathed over the whole page. */
+.paper-grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: var(--color-honey-soft);
+  color: var(--color-rose-ink);
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+/* Accessible, warm focus ring everywhere. */
+:focus-visible {
+  outline: 3px solid var(--color-honey);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------------------------------------------------------------------------
+   Reusable fabric of the illustrated world.
+   Declared in the components layer so Tailwind utilities keep priority.
+--------------------------------------------------------------------------- */
+@layer components {
+
+/* A soft object that feels sewn rather than printed. */
+.stitched {
+  position: relative;
+  background: linear-gradient(150deg, rgba(255, 251, 243, 0.96), rgba(246, 236, 219, 0.94));
+  border: 1px solid rgba(201, 135, 129, 0.14);
+  box-shadow: var(--shadow-plush);
+}
+.stitched::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1.5px dashed rgba(227, 179, 81, 0.35);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Ceramic-like card for illustrations. */
+.illu-card {
+  border-radius: var(--radius-blob);
+  box-shadow: 0 14px 40px rgba(117, 89, 70, 0.09);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+@media (hover: hover) {
+  .illu-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+  }
+  .illu-card:hover .illu-card-img {
+    transform: translateY(-4px) rotate(0.6deg) scale(1.015);
+  }
+}
+.illu-card-img {
+  transition: transform 0.45s ease;
+}
+
+/* Ribbon-like buttons. */
+.btn-rose {
+  background: var(--color-rose);
+  color: #fff7ee;
+  border-radius: 999px;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  box-shadow: 0 10px 26px rgba(201, 135, 129, 0.35);
+}
+.btn-rose:hover {
+  background: var(--color-rose-deep);
+  transform: translateY(-1px);
+}
+.btn-honey {
+  background: var(--color-honey);
+  color: #5c4321;
+  border-radius: 999px;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+  box-shadow: 0 10px 26px rgba(227, 179, 81, 0.32);
+}
+.btn-honey:hover {
+  background: var(--color-honey-deep);
+  color: #fffaf0;
+  transform: translateY(-1px);
+}
+.btn-ghost {
+  border: 1.5px solid rgba(201, 135, 129, 0.4);
+  color: var(--color-rose-ink);
+  border-radius: 999px;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: var(--color-rose);
+}
+
+/* Tiny heart list markers for editorial lists. */
+.heart-list li {
+  position: relative;
+  padding-left: 1.4rem;
+}
+.heart-list li::before {
+  content: "♡";
+  position: absolute;
+  left: 0;
+  color: var(--color-rose);
+}
+
+} /* end @layer components */
+
+/* ---------------------------------------------------------------------------
+   Motion & accessibility
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Skip link for keyboard users. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  background: var(--color-ivory);
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  box-shadow: var(--shadow-plush);
 }
