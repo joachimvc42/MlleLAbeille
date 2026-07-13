@@ -1,3 +1,5 @@
+export const revalidate = 300;
+
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -70,16 +72,14 @@ export default async function IllustrationPage({
   const illustration = await getIllustration(slug);
   if (!illustration) notFound();
 
-  const [products, related, allCollections, allCelebrations] =
+  const [products, related, allCollections, allCelebrations, template] =
     await Promise.all([
       getProductsForIllustration(illustration),
       getRelatedIllustrations(illustration),
       getCollections(),
       getCelebrations(),
+      getPersonalizationTemplate(illustration.personalizationTemplateId),
     ]);
-  const template = getPersonalizationTemplate(
-    illustration.personalizationTemplateId,
-  );
 
   const collections = allCollections.filter((c) =>
     illustration.collections.includes(c.slug),

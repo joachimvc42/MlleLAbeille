@@ -35,6 +35,7 @@ export function AccountView() {
   const [user, setUser] = useState<User | null>(null);
   // Only load when Supabase exists; otherwise render the notice immediately.
   const [loading, setLoading] = useState(() => Boolean(supabase));
+  const [isAdmin, setIsAdmin] = useState(false);
   const [displayName, setDisplayName] = useState("");
   const [orders, setOrders] = useState<OrderRow[]>([]);
   const [addresses, setAddresses] = useState<AddressRow[]>([]);
@@ -44,7 +45,11 @@ export function AccountView() {
     async (uid: string) => {
       if (!supabase) return;
       const [profileRes, ordersRes, addressesRes] = await Promise.all([
-        supabase.from("profiles").select("display_name").eq("id", uid).maybeSingle(),
+        supabase
+          .from("profiles")
+          .select("display_name, is_admin")
+          .eq("id", uid)
+          .maybeSingle(),
         supabase
           .from("orders")
           .select("id, ref, status, total_cents, currency, created_at")
@@ -57,6 +62,7 @@ export function AccountView() {
           .order("created_at", { ascending: false }),
       ]);
       setDisplayName(profileRes.data?.display_name ?? "");
+      setIsAdmin(Boolean(profileRes.data?.is_admin));
       setOrders((ordersRes.data as OrderRow[] | null) ?? []);
       setAddresses((addressesRes.data as AddressRow[] | null) ?? []);
     },
@@ -308,14 +314,22 @@ export function AccountView() {
         </div>
       </section>
 
-      {/* Favorites link */}
-      <p>
+      {/* Favorites + admin links */}
+      <p className="flex flex-wrap gap-6">
         <Link
           href={`/${locale}/favoris`}
           className="font-semibold text-rose underline-offset-4 hover:underline"
         >
           ♥ {dict.account.favorites}
         </Link>
+        {isAdmin && (
+          <Link
+            href={`/${locale}/admin`}
+            className="font-semibold text-rose underline-offset-4 hover:underline"
+          >
+            🐝 {dict.admin.title}
+          </Link>
+        )}
       </p>
     </div>
   );

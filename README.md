@@ -14,7 +14,8 @@ son format, et — quand le dessin s’y prête — sa personnalisation
 |---|---|
 | Framework | Next.js 16 (App Router, Server Components) + React 19 + TypeScript |
 | Styles | Tailwind CSS 4, design system « cousu main » (rose poudré `#C98781`, miel `#E3B351`, crème) |
-| Données | Supabase (Postgres + RLS, Auth, Storage) — **fallback local complet** sans configuration |
+| Données | Supabase (Postgres + RLS, Auth, Storage) — **fallback local complet** sans configuration, bascule automatique une fois la base seedée |
+| Admin | « L'Atelier » — `/fr/admin` : publication, vedettes, commandes, messages, newsletter (protégé par `profiles.is_admin` + RLS) |
 | Paiement | Stripe Checkout via une abstraction (`src/lib/payments`) — mode démo étiqueté sans clé |
 | Fabrication | Printify (impression à la demande) via `src/lib/printify` |
 | Images | pipeline sharp (`npm run assets`) → WebP 1600/800/320 |

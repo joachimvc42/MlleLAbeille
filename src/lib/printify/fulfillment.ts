@@ -1,6 +1,6 @@
 import "server-only";
 
-import { products } from "@/lib/catalogue/data";
+import { resolvePrintifyRefs } from "@/lib/catalogue";
 import {
   createPrintifyOrder,
   isPrintifyConfigured,
@@ -38,9 +38,7 @@ export async function fulfillWithPrintify(
 
   const lineItems: PrintifyLineItem[] = [];
   for (const item of request.items) {
-    const product = products.find((p) => p.slug === item.productSlug);
-    const variant = product?.variants.find((v) => v.id === item.variantId);
-    const refs = variant?.printify;
+    const refs = await resolvePrintifyRefs(item.productSlug, item.variantId);
     if (
       !refs ||
       refs.variantId === null ||

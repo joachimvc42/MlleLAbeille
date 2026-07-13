@@ -1,3 +1,5 @@
+export const revalidate = 300;
+
 import Image from "next/image";
 import Link from "next/link";
 import { getDictionary } from "@/lib/i18n";

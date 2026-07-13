@@ -72,10 +72,26 @@ ou plus simplement tester depuis l'app :
   du bucket `illustrations-web`).
 - Configurer les webhooks Stripe et Printify (voir `docs/DEPLOYMENT.md`).
 
-## 6. Bascule du catalogue local → Supabase
+## 6. Catalogue : Supabase avec repli local (automatique)
 
-Le storefront lit aujourd'hui `src/lib/catalogue/data.ts` (même contenu que
-`seed.sql`). Pour basculer sur Supabase : implémenter les requêtes dans
-`src/lib/catalogue/index.ts` (seul point d'accès aux données — les pages ne
-touchent jamais les données directement). Les formes TypeScript et les tables
-SQL sont déjà alignées champ à champ.
+`src/lib/catalogue/index.ts` (seul point d'accès aux données) interroge
+Supabase dès que `NEXT_PUBLIC_SUPABASE_URL` + `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+existent **et** que la table `illustrations` contient des lignes publiées
+(donc après `seed.sql`). Sinon, repli transparent sur le catalogue local
+`data.ts`. Les pages boutique se revalident toutes les 5 minutes (ISR) :
+les changements faits dans l'Atelier apparaissent seuls, sans redéploiement.
+
+## 7. L'Atelier (interface d'administration)
+
+Une administration minimale protégée est disponible sur `/fr/admin`
+(ou `/en/admin`) :
+
+- **Vue d'ensemble** : compteurs (illustrations, commandes, abonnés, messages)
+- **Illustrations** : publier/dépublier, mettre en vedette, ordre d'accueil
+- **Commandes** : suivi et changement de statut
+- **Messages** : formulaire de contact, marquage « traité »
+- **Newsletter** : liste des abonnés
+
+Accès : compte connecté **et** `profiles.is_admin = true` (étape 3.5).
+La protection réelle est assurée par les policies RLS (`is_admin()`) —
+l'interface n'est qu'une commodité par-dessus.

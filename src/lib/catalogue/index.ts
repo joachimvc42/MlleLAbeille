@@ -1,12 +1,16 @@
 import "server-only";
 
 import {
-  celebrations,
-  collections,
-  illustrations,
-  personalizationTemplates,
-  products,
+  celebrations as localCelebrations,
+  collections as localCollections,
+  illustrations as localIllustrations,
+  personalizationTemplates as localTemplates,
+  products as localProducts,
 } from "./data";
+import {
+  fetchSupabaseCatalogue,
+  type CatalogueSnapshot,
+} from "./supabase";
 import type {
   CelebrationCategory,
   Collection,
@@ -17,19 +21,50 @@ import type {
 import type { Locale } from "@/lib/i18n/config";
 
 /* ---------------------------------------------------------------------------
-   Catalogue access layer.
+   Catalogue access layer — the ONLY module pages read data from.
 
-   Today this reads the local catalogue (data.ts), which is also what seeds
-   Supabase. Once Supabase holds the live catalogue, swap the internals of
-   these functions for Supabase queries (the shapes already match the schema
-   in /supabase/schema.sql) — every page goes through this module only.
+   With Supabase configured and seeded, the live catalogue comes from the
+   database (so the admin interface is authoritative); otherwise the local
+   catalogue in data.ts serves as a complete, honest fallback for
+   development and demos.
 --------------------------------------------------------------------------- */
+
+const localSnapshot: CatalogueSnapshot = {
+  source: "local",
+  illustrations: localIllustrations,
+  collections: localCollections,
+  celebrations: localCelebrations,
+  products: localProducts,
+  templates: localTemplates,
+};
+
+const SNAPSHOT_TTL_MS = 60_000;
+let cached: CatalogueSnapshot | null = null;
+let cachedAt = 0;
+
+export async function getSnapshot(): Promise<CatalogueSnapshot> {
+  const now = Date.now();
+  if (cached && now - cachedAt < SNAPSHOT_TTL_MS) return cached;
+
+  try {
+    const remote = await fetchSupabaseCatalogue();
+    cached = remote ?? localSnapshot;
+  } catch (error) {
+    console.warn("Falling back to local catalogue:", error);
+    cached = localSnapshot;
+  }
+  cachedAt = now;
+  return cached;
+}
+
+/* ------------------------------ Illustrations ---------------------------- */
 
 export async function getIllustrations(filter?: {
   collection?: string;
   celebration?: string;
   personalizable?: boolean;
 }): Promise<Illustration[]> {
+  const { illustrations } = await getSnapshot();
   let list = illustrations.filter((i) => i.status === "published");
   if (filter?.collection) {
     list = list.filter((i) => i.collections.includes(filter.collection!));
@@ -44,6 +79,7 @@ export async function getIllustrations(filter?: {
 }
 
 export async function getFeaturedIllustrations(): Promise<Illustration[]> {
+  const { illustrations } = await getSnapshot();
   return illustrations
     .filter((i) => i.status === "published" && i.featured)
     .sort((a, b) => (a.featuredOrder ?? 99) - (b.featuredOrder ?? 99))
@@ -53,6 +89,7 @@ export async function getFeaturedIllustrations(): Promise<Illustration[]> {
 export async function getIllustration(
   slug: string,
 ): Promise<Illustration | null> {
+  const { illustrations } = await getSnapshot();
   return (
     illustrations.find((i) => i.slug === slug && i.status === "published") ??
     null
@@ -63,10 +100,9 @@ export async function getRelatedIllustrations(
   illustration: Illustration,
   count = 3,
 ): Promise<Illustration[]> {
-  const scored = illustrations
-    .filter(
-      (i) => i.status === "published" && i.slug !== illustration.slug,
-    )
+  const { illustrations } = await getSnapshot();
+  return illustrations
+    .filter((i) => i.status === "published" && i.slug !== illustration.slug)
     .map((i) => {
       const sharedCollections = i.collections.filter((c) =>
         illustration.collections.includes(c),
@@ -76,45 +112,57 @@ export async function getRelatedIllustrations(
       ).length;
       return { i, score: sharedCollections * 2 + sharedCelebrations };
     })
-    .sort((a, b) => b.score - a.score);
-  return scored.slice(0, count).map((s) => s.i);
+    .sort((a, b) => b.score - a.score)
+    .slice(0, count)
+    .map((s) => s.i);
 }
 
+/* ------------------------- Collections & celebrations -------------------- */
+
 export async function getCollections(): Promise<Collection[]> {
+  const { collections } = await getSnapshot();
   return [...collections].sort((a, b) => a.order - b.order);
 }
 
 export async function getCollection(slug: string): Promise<Collection | null> {
+  const { collections } = await getSnapshot();
   return collections.find((c) => c.slug === slug) ?? null;
 }
 
 export async function getCelebrations(): Promise<CelebrationCategory[]> {
+  const { celebrations } = await getSnapshot();
   return [...celebrations].sort((a, b) => a.order - b.order);
 }
 
 export async function getCelebration(
   slug: string,
 ): Promise<CelebrationCategory | null> {
+  const { celebrations } = await getSnapshot();
   return celebrations.find((c) => c.slug === slug) ?? null;
 }
 
+/* --------------------------------- Products ------------------------------ */
+
 export async function getProducts(): Promise<ProductType[]> {
+  const { products } = await getSnapshot();
   return [...products].sort((a, b) => a.order - b.order);
 }
 
 export async function getProductsForIllustration(
   illustration: Illustration,
 ): Promise<ProductType[]> {
+  const { products } = await getSnapshot();
   return products
     .filter((p) => illustration.productSlugs.includes(p.slug))
     .sort((a, b) => a.order - b.order);
 }
 
-export function getPersonalizationTemplate(
+export async function getPersonalizationTemplate(
   id: string | null,
-): PersonalizationTemplate | null {
+): Promise<PersonalizationTemplate | null> {
   if (!id) return null;
-  return personalizationTemplates.find((t) => t.id === id) ?? null;
+  const { templates } = await getSnapshot();
+  return templates.find((t) => t.id === id) ?? null;
 }
 
 /* ------------------------------- Search ---------------------------------- */
@@ -140,6 +188,7 @@ export async function searchCatalogue(
   if (q.length < 2) {
     return { illustrations: [], collections: [], celebrations: [] };
   }
+  const { illustrations, collections, celebrations } = await getSnapshot();
 
   const matchText = (...candidates: string[]) =>
     candidates.some((c) => normalize(c).includes(q));
@@ -183,10 +232,11 @@ export async function searchCatalogue(
  * Cart totals and checkout ALWAYS go through this — client prices are
  * treated as display hints only.
  */
-export function resolveVariantPrice(
+export async function resolveVariantPrice(
   productSlug: string,
   variantId: string,
-): { priceCents: number; productName: ProductType["name"] } | null {
+): Promise<{ priceCents: number; productName: ProductType["name"] } | null> {
+  const { products } = await getSnapshot();
   const product = products.find((p) => p.slug === productSlug);
   const variant = product?.variants.find(
     (v) => v.id === variantId && v.available,
@@ -195,4 +245,14 @@ export function resolveVariantPrice(
   return { priceCents: variant.priceCents, productName: product.name };
 }
 
-export { products, collections, celebrations, illustrations, personalizationTemplates };
+/** Printify references of a variant (for fulfillment). */
+export async function resolvePrintifyRefs(
+  productSlug: string,
+  variantId: string,
+): Promise<ProductType["variants"][number]["printify"] | null> {
+  const { products } = await getSnapshot();
+  const variant = products
+    .find((p) => p.slug === productSlug)
+    ?.variants.find((v) => v.id === variantId);
+  return variant?.printify ?? null;
+}

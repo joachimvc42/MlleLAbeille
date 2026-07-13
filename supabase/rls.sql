@@ -168,6 +168,13 @@ create policy "orders: own read"
   on public.orders for select
   using (auth.uid() = user_id or public.is_admin());
 
+-- Admins can move orders through their lifecycle from the back office.
+-- Customers still have no write policy at all.
+create policy "orders: admin update"
+  on public.orders for update
+  using (public.is_admin())
+  with check (public.is_admin());
+
 alter table public.order_items enable row level security;
 create policy "order items: own read"
   on public.order_items for select

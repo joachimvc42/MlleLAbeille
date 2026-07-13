@@ -2,8 +2,11 @@ import "server-only";
 
 import { randomBytes } from "node:crypto";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
-import { getIllustration, resolveVariantPrice } from "@/lib/catalogue";
-import { getPersonalizationTemplate } from "@/lib/catalogue";
+import {
+  getIllustration,
+  getPersonalizationTemplate,
+  resolveVariantPrice,
+} from "@/lib/catalogue";
 import { validatePersonalization } from "@/lib/personalization/validate";
 import { CURRENCY } from "@/lib/catalogue/types";
 import type { CheckoutPayload } from "@/lib/checkout/schema";
@@ -50,7 +53,7 @@ export async function priceOrder(
         `Illustration ${item.illustrationSlug} is not available on ${item.productSlug}`,
       );
     }
-    const priced = resolveVariantPrice(item.productSlug, item.variantId);
+    const priced = await resolveVariantPrice(item.productSlug, item.variantId);
     if (!priced) {
       throw new Error(
         `Unknown variant ${item.variantId} for product ${item.productSlug}`,
@@ -59,7 +62,7 @@ export async function priceOrder(
 
     let personalization: Record<string, string> | null = null;
     if (item.personalization) {
-      const template = getPersonalizationTemplate(
+      const template = await getPersonalizationTemplate(
         illustration.personalizationTemplateId,
       );
       if (template) {
