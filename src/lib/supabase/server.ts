@@ -16,21 +16,26 @@ export async function getSupabaseServerClient(): Promise<SupabaseClient | null> 
 
   const cookieStore = await cookies();
 
-  return createServerClient(url, key, {
-    cookies: {
-      getAll() {
-        return cookieStore.getAll();
-      },
-      setAll(cookiesToSet) {
-        try {
-          for (const { name, value, options } of cookiesToSet) {
-            cookieStore.set(name, value, options);
+  try {
+    return createServerClient(url, key, {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll();
+        },
+        setAll(cookiesToSet) {
+          try {
+            for (const { name, value, options } of cookiesToSet) {
+              cookieStore.set(name, value, options);
+            }
+          } catch {
+            // Called from a Server Component — safe to ignore, the proxy
+            // or a Route Handler will refresh the session cookie instead.
           }
-        } catch {
-          // Called from a Server Component — safe to ignore, the proxy
-          // or a Route Handler will refresh the session cookie instead.
-        }
+        },
       },
-    },
-  });
+    });
+  } catch (error) {
+    console.warn("Invalid Supabase server client configuration:", error);
+    return null;
+  }
 }

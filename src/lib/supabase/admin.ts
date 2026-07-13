@@ -12,7 +12,12 @@ export function getSupabaseAdminClient(): SupabaseClient | null {
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) return null;
 
-  return createClient(url, key, {
-    auth: { autoRefreshToken: false, persistSession: false },
-  });
+  try {
+    return createClient(url, key, {
+      auth: { autoRefreshToken: false, persistSession: false },
+    });
+  } catch (error) {
+    console.warn("Invalid Supabase admin client configuration:", error);
+    return null;
+  }
 }
