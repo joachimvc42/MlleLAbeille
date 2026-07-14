@@ -40,7 +40,7 @@ export function HeroScene({ beeAlt }: { beeAlt: string }) {
         height={800}
         priority
         sizes="(max-width: 640px) 60vw, 320px"
-        className="animate-float absolute bottom-[120px] left-[13%] z-10 w-[46%] rounded-[38%] drop-shadow-[0_18px_18px_rgba(108,74,45,0.14)]"
+        className="animate-forage absolute bottom-[120px] left-[13%] z-10 w-[46%] rounded-[38%] drop-shadow-[0_18px_18px_rgba(108,74,45,0.14)]"
       />
 
       {/* cup with a heart */}

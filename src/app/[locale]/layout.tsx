@@ -6,6 +6,7 @@ import "../globals.css";
 import { getDictionary } from "@/lib/i18n";
 import { isLocale, locales } from "@/lib/i18n/config";
 import { Providers } from "@/components/Providers";
+import { CustomCursor } from "@/components/CustomCursor";
 import { TopBar } from "@/components/layout/TopBar";
 import { SideNav } from "@/components/layout/SideNav";
 import { Footer } from "@/components/layout/Footer";
@@ -90,6 +91,7 @@ export default async function RootLayout({
     <html lang={locale} className={`${lora.variable} ${quicksand.variable}`}>
       <body className="paper-grain min-h-dvh">
         <Providers locale={locale} dict={dict}>
+          <CustomCursor />
           <a href="#contenu" className="skip-link">
             {dict.nav.skipToContent}
           </a>
