@@ -149,6 +149,16 @@ html {
   scroll-behavior: smooth;
 }
 
+/*
+ * A tiny woven-linen tile, reused as one background layer across the room
+ * washes and the stitched fabric surfaces below. Kept as a single shared
+ * data URI so every textile surface in the house comes from the same
+ * "bolt of cloth" rather than looking like unrelated patterns.
+ */
+:root {
+  --weave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13'%3E%3Cpath d='M0 13L13 0M-1 1l2-2M12 14l2-2' stroke='%239d5f59' stroke-opacity='0.08' stroke-width='1'/%3E%3C/svg%3E");
+}
+
 body {
   font-family: var(--font-sans);
   color: var(--color-rose-ink);
@@ -171,6 +181,41 @@ body {
   pointer-events: none;
   opacity: 0.028;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------------------------------------------------------------------------
+   Rooms: soft, blotchy wall washes that turn the homepage scroll into a
+   walk from one room of the house into the next. Backgrounds only (never
+   pseudo-elements) so they always paint behind content, no matter what —
+   and always translucent over the shared cream, never a flat solid slab.
+--------------------------------------------------------------------------- */
+.room-honey {
+  background-image:
+    var(--weave),
+    radial-gradient(ellipse 140% 90% at 15% 0%, rgba(227, 179, 81, 0.15), transparent 60%),
+    radial-gradient(ellipse 120% 90% at 92% 100%, rgba(227, 179, 81, 0.1), transparent 55%);
+  background-repeat: repeat, no-repeat, no-repeat;
+}
+.room-sage {
+  background-image:
+    var(--weave),
+    radial-gradient(ellipse 140% 90% at 85% 0%, rgba(159, 177, 140, 0.17), transparent 60%),
+    radial-gradient(ellipse 120% 90% at 8% 100%, rgba(159, 177, 140, 0.11), transparent 55%);
+  background-repeat: repeat, no-repeat, no-repeat;
+}
+.room-sky {
+  background-image:
+    var(--weave),
+    radial-gradient(ellipse 140% 90% at 20% 10%, rgba(143, 180, 204, 0.16), transparent 60%),
+    radial-gradient(ellipse 120% 90% at 88% 95%, rgba(143, 180, 204, 0.1), transparent 55%);
+  background-repeat: repeat, no-repeat, no-repeat;
+}
+.room-rose {
+  background-image: radial-gradient(
+    ellipse 130% 100% at 50% 0%,
+    rgba(201, 135, 129, 0.09),
+    transparent 62%
+  );
 }
 
 ::selection {
@@ -199,12 +244,16 @@ h3,
 --------------------------------------------------------------------------- */
 @layer components {
 
-/* A soft object that feels sewn rather than printed. */
+/* A woven, tactile surface — a placemat, not a white card. */
 .stitched {
   position: relative;
-  background: linear-gradient(150deg, rgba(255, 251, 243, 0.96), rgba(246, 236, 219, 0.94));
-  border: 1px solid rgba(201, 135, 129, 0.14);
-  box-shadow: var(--shadow-plush);
+  background-image: var(--weave),
+    linear-gradient(150deg, rgba(250, 240, 216, 0.97), rgba(232, 213, 177, 0.95));
+  background-repeat: repeat, no-repeat;
+  border: 1px solid rgba(201, 135, 129, 0.16);
+  box-shadow:
+    var(--shadow-plush),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 .stitched::before {
   content: "";
@@ -215,18 +264,41 @@ h3,
   pointer-events: none;
 }
 
-/* Ceramic-like card for illustrations. */
+/* Adds the linen weave over any element's own background-color, so tinted
+   cards (collections, celebrations) keep their hue while gaining texture. */
+.weave-surface {
+  background-image: var(--weave);
+  background-repeat: repeat;
+}
+
+/* Ceramic-like card for illustrations: a rimmed tile with a glaze catch-light. */
 .illu-card {
+  position: relative;
   border-radius: var(--radius-blob);
-  box-shadow: 0 14px 40px rgba(117, 89, 70, 0.09);
+  box-shadow:
+    0 0 0 1px rgba(157, 95, 89, 0.08),
+    0 14px 40px rgba(117, 89, 70, 0.1);
   transition:
     transform 0.35s ease,
     box-shadow 0.35s ease;
 }
+.illu-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 30%),
+    linear-gradient(0deg, rgba(74, 50, 30, 0.1) 0%, rgba(74, 50, 30, 0) 18%);
+  mix-blend-mode: soft-light;
+}
 @media (hover: hover) {
   .illu-card:hover {
     transform: translateY(-6px);
-    box-shadow: var(--shadow-hover);
+    box-shadow:
+      0 0 0 1px rgba(157, 95, 89, 0.12),
+      var(--shadow-hover);
   }
   .illu-card:hover .illu-card-img {
     transform: translateY(-4px) rotate(0.6deg) scale(1.015);

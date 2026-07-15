@@ -13,6 +13,7 @@ import { IllustrationCard } from "@/components/shop/IllustrationCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { HeroScene } from "@/components/home/HeroScene";
 import { ArrowRightIcon } from "@/components/Icons";
+import { ScallopDivider } from "@/components/ScallopDivider";
 import { OrganizationJsonLd, WebsiteJsonLd } from "@/lib/seo/jsonld";
 
 export default async function HomePage({
@@ -67,150 +68,163 @@ export default async function HomePage({
       </section>
 
       {/* --------------------------- Featured six -------------------------- */}
-      <section
-        aria-labelledby="featured-title"
-        className="mx-auto max-w-[1300px] px-6 py-20 sm:px-10 lg:pl-[230px]"
-      >
-        <SectionHeading
-          id="featured-title"
-          title={dict.home.featuredTitle}
-          intro={dict.home.featuredIntro}
-        />
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((illustration, index) => (
-            <IllustrationCard
-              key={illustration.slug}
-              illustration={illustration}
-              locale={locale}
-              priority={index < 3}
-            />
-          ))}
-        </div>
-        <div className="mt-12 text-center">
-          <Link
-            href={`/${locale}/illustrations`}
-            className="btn-honey inline-flex items-center gap-2.5 px-7 py-3.5 font-semibold"
-          >
-            {dict.common.discoverAll}
-            <ArrowRightIcon className="h-4 w-4" />
-          </Link>
-        </div>
-      </section>
-
-      {/* ---------------------------- Collections --------------------------- */}
-      <section
-        aria-labelledby="collections-title"
-        className="mx-auto max-w-[1300px] px-6 py-20 sm:px-10 lg:pl-[230px]"
-      >
-        <SectionHeading
-          id="collections-title"
-          title={dict.home.collectionsTitle}
-          intro={dict.home.collectionsIntro}
-        />
-        <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
-          {collections.map((collection) => (
-            <Link
-              key={collection.slug}
-              href={`/${locale}/collections/${collection.slug}`}
-              className="illu-card stitched group flex flex-col items-center rounded-[2.2rem] p-7 text-center"
-              style={{ backgroundColor: collection.tint }}
-            >
-              <span
-                className="relative z-10 block h-28 w-28 overflow-hidden rounded-full shadow-plush transition-transform duration-300 group-hover:scale-105"
-                style={{ backgroundColor: collection.tint }}
-              >
-                <Image
-                  src={`/illustrations/${collection.coverIllustrationSlug}/thumb.webp`}
-                  alt=""
-                  width={320}
-                  height={320}
-                  sizes="112px"
-                  className="h-full w-full object-cover"
-                />
-              </span>
-              <span className="font-display relative z-10 mt-5 text-xl font-semibold text-rose">
-                {collection.name}
-              </span>
-              <span className="relative z-10 mt-2 text-sm leading-relaxed text-rose-ink/90">
-                {collection.subtitle[locale]}
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* ---------------------------- Célébrations --------------------------- */}
-      <section
-        aria-labelledby="celebrations-title"
-        className="mx-auto max-w-[1300px] px-6 py-20 sm:px-10 lg:pl-[230px]"
-      >
-        <SectionHeading
-          id="celebrations-title"
-          title={dict.home.celebrationsTitle}
-          intro={dict.home.celebrationsIntro}
-        />
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {celebrations.map((celebration) => (
-            <li key={celebration.slug}>
-              <Link
-                href={`/${locale}/celebrations/${celebration.slug}`}
-                className="illu-card flex h-full items-start gap-4 rounded-[1.8rem] border border-rose/10 p-5"
-                style={{ backgroundColor: celebration.tint }}
-              >
-                <span
-                  aria-hidden="true"
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ivory/90 text-xl shadow-sm"
-                >
-                  {celebration.icon}
-                </span>
-                <span>
-                  <span className="font-display block text-lg font-semibold text-rose">
-                    {celebration.name[locale]}
-                  </span>
-                  <span className="mt-1 block text-sm leading-relaxed text-rose-ink/90">
-                    {celebration.description[locale]}
-                  </span>
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* ----------------------------- Mon histoire -------------------------- */}
-      <section
-        aria-labelledby="story-title"
-        className="mx-auto max-w-[1300px] px-6 py-20 sm:px-10 lg:pl-[230px]"
-      >
-        <div className="stitched mx-auto grid max-w-4xl items-center gap-8 rounded-[2.5rem] p-8 sm:p-12 md:grid-cols-[auto_1fr]">
-          <div className="relative z-10 mx-auto h-40 w-40 overflow-hidden rounded-full shadow-plush md:h-48 md:w-48">
-            <Image
-              src="/illustrations/abeille-sereine/card.webp"
-              alt={dict.home.heroAlt}
-              width={800}
-              height={800}
-              sizes="192px"
-              className="h-full w-full object-cover"
-            />
+      {/* The pantry: a sunlit shelf where the illustrations are set out. */}
+      <div className="room-honey relative">
+        <ScallopDivider color="#faf0d8" className="absolute -top-[25px] left-0" />
+        <section
+          aria-labelledby="featured-title"
+          className="mx-auto max-w-[1300px] px-6 py-20 sm:px-10 lg:pl-[230px]"
+        >
+          <SectionHeading
+            id="featured-title"
+            title={dict.home.featuredTitle}
+            intro={dict.home.featuredIntro}
+          />
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {featured.map((illustration, index) => (
+              <IllustrationCard
+                key={illustration.slug}
+                illustration={illustration}
+                locale={locale}
+                priority={index < 3}
+              />
+            ))}
           </div>
-          <div className="relative z-10">
-            <h2
-              id="story-title"
-              className="text-3xl font-semibold text-rose"
-            >
-              {dict.home.storyTitle}
-            </h2>
-            <p className="mt-4 leading-relaxed">{dict.home.storyTeaser}</p>
+          <div className="mt-12 text-center">
             <Link
-              href={`/${locale}/mon-histoire`}
-              className="btn-ghost mt-6 inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold"
+              href={`/${locale}/illustrations`}
+              className="btn-honey inline-flex items-center gap-2.5 px-7 py-3.5 font-semibold"
             >
-              {dict.home.storyLink}
+              {dict.common.discoverAll}
               <ArrowRightIcon className="h-4 w-4" />
             </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
+
+      {/* ---------------------------- Collections --------------------------- */}
+      {/* The sunroom: the illustrated worlds, shelved like glazed pottery. */}
+      <div className="room-sage relative">
+        <ScallopDivider color="#e4ebdd" className="absolute -top-[25px] left-0" />
+        <section
+          aria-labelledby="collections-title"
+          className="mx-auto max-w-[1300px] px-6 py-20 sm:px-10 lg:pl-[230px]"
+        >
+          <SectionHeading
+            id="collections-title"
+            title={dict.home.collectionsTitle}
+            intro={dict.home.collectionsIntro}
+          />
+          <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
+            {collections.map((collection) => (
+              <Link
+                key={collection.slug}
+                href={`/${locale}/collections/${collection.slug}`}
+                className="illu-card weave-surface group flex flex-col items-center rounded-[2.2rem] p-7 text-center"
+                style={{ backgroundColor: collection.tint }}
+              >
+                <span
+                  className="relative z-10 block h-28 w-28 overflow-hidden rounded-full shadow-plush transition-transform duration-300 group-hover:scale-105"
+                  style={{ backgroundColor: collection.tint }}
+                >
+                  <Image
+                    src={`/illustrations/${collection.coverIllustrationSlug}/thumb.webp`}
+                    alt=""
+                    width={320}
+                    height={320}
+                    sizes="112px"
+                    className="h-full w-full object-cover"
+                  />
+                </span>
+                <span className="font-display relative z-10 mt-5 text-xl font-semibold text-rose">
+                  {collection.name}
+                </span>
+                <span className="relative z-10 mt-2 text-sm leading-relaxed text-rose-ink/90">
+                  {collection.subtitle[locale]}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      {/* ---------------------------- Célébrations --------------------------- */}
+      {/* The nursery corner: soft light, gift ribbons, quiet celebration. */}
+      <div className="room-sky relative">
+        <ScallopDivider color="#eaf2f7" className="absolute -top-[25px] left-0" />
+        <section
+          aria-labelledby="celebrations-title"
+          className="mx-auto max-w-[1300px] px-6 py-20 sm:px-10 lg:pl-[230px]"
+        >
+          <SectionHeading
+            id="celebrations-title"
+            title={dict.home.celebrationsTitle}
+            intro={dict.home.celebrationsIntro}
+          />
+          <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {celebrations.map((celebration) => (
+              <li key={celebration.slug}>
+                <Link
+                  href={`/${locale}/celebrations/${celebration.slug}`}
+                  className="illu-card weave-surface flex h-full items-start gap-4 rounded-[1.8rem] p-5"
+                  style={{ backgroundColor: celebration.tint }}
+                >
+                  <span
+                    aria-hidden="true"
+                    className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ivory/90 text-xl shadow-sm"
+                  >
+                    {celebration.icon}
+                  </span>
+                  <span className="relative z-10">
+                    <span className="font-display block text-lg font-semibold text-rose">
+                      {celebration.name[locale]}
+                    </span>
+                    <span className="mt-1 block text-sm leading-relaxed text-rose-ink/90">
+                      {celebration.description[locale]}
+                    </span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+
+      {/* ----------------------------- Mon histoire -------------------------- */}
+      {/* The keepsake nook: warm, intimate, close to the wall again. */}
+      <div className="room-rose relative">
+        <ScallopDivider color="#f7e9e6" className="absolute -top-[25px] left-0" />
+        <section
+          aria-labelledby="story-title"
+          className="mx-auto max-w-[1300px] px-6 py-20 sm:px-10 lg:pl-[230px]"
+        >
+          <div className="stitched mx-auto grid max-w-4xl items-center gap-8 rounded-[2.5rem] p-8 sm:p-12 md:grid-cols-[auto_1fr]">
+            <div className="relative z-10 mx-auto h-40 w-40 overflow-hidden rounded-full shadow-plush md:h-48 md:w-48">
+              <Image
+                src="/illustrations/abeille-sereine/card.webp"
+                alt={dict.home.heroAlt}
+                width={800}
+                height={800}
+                sizes="192px"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="relative z-10">
+              <h2 id="story-title" className="text-3xl font-semibold text-rose">
+                {dict.home.storyTitle}
+              </h2>
+              <p className="mt-4 leading-relaxed">{dict.home.storyTeaser}</p>
+              <Link
+                href={`/${locale}/mon-histoire`}
+                className="btn-ghost mt-6 inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold"
+              >
+                {dict.home.storyLink}
+                <ArrowRightIcon className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
     </>
   );
 }

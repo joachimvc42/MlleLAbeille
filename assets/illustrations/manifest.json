@@ -4,12 +4,12 @@
     { "slug": "abeille-sereine", "background": "#FBF7DC" },
     { "slug": "petite-abeille-curieuse", "background": "#F9EFEA" },
     { "slug": "abeille-anniversaire-gateau", "background": "#FBF7DC" },
-    { "slug": "abeille-pot-de-miel", "background": "#FFFFFF" },
+    { "slug": "abeille-pot-de-miel", "background": "#FAF0D8" },
     { "slug": "abeille-trois-ballons", "background": "#FBF7DC" },
     { "slug": "bebe-abeille", "background": "#FBF7DC" },
     { "slug": "abeille-ballon-bleu", "background": "#DDEBF5" },
-    { "slug": "les-petites-abeilles", "background": "#FFFFFF" },
-    { "slug": "quatre-petits-coeurs", "background": "#FFFDF6" },
-    { "slug": "abeilles-happy-birthday", "background": "#FFFFFF" }
+    { "slug": "les-petites-abeilles", "background": "#F6EDDA" },
+    { "slug": "quatre-petits-coeurs", "background": "#F7E9E6" },
+    { "slug": "abeilles-happy-birthday", "background": "#FAF0D8" }
   ]
 }

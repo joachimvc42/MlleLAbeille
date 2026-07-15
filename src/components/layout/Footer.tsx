@@ -3,6 +3,7 @@ import type { Dictionary } from "@/lib/i18n/dictionaries/fr";
 import type { Locale } from "@/lib/i18n/config";
 import { BeeLogo } from "@/components/BeeLogo";
 import { NewsletterForm } from "@/components/NewsletterForm";
+import { ScallopDivider } from "@/components/ScallopDivider";
 
 export function Footer({
   locale,
@@ -27,21 +28,16 @@ export function Footer({
   ];
 
   return (
-    <footer className="relative mt-24 border-t border-rose/10 bg-ivory/70">
-      {/* soft scalloped edge */}
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 1200 30"
-        preserveAspectRatio="none"
-        className="absolute -top-[29px] left-0 h-[30px] w-full text-ivory/70"
-      >
-        <path
-          d="M0 30 Q 30 0 60 30 T 120 30 T 180 30 T 240 30 T 300 30 T 360 30 T 420 30 T 480 30 T 540 30 T 600 30 T 660 30 T 720 30 T 780 30 T 840 30 T 900 30 T 960 30 T 1020 30 T 1080 30 T 1140 30 T 1200 30 Z"
-          fill="currentColor"
-        />
-      </svg>
+    <footer
+      className="relative mt-24 border-t border-rose/10 bg-paper"
+      style={{
+        backgroundImage:
+          "var(--weave), linear-gradient(180deg, rgba(246,237,218,.4), rgba(232,213,177,.55))",
+      }}
+    >
+      <ScallopDivider color="#f6edda" className="absolute -top-[25px] left-0" />
 
-      <div className="mx-auto grid max-w-[1200px] gap-10 px-6 py-14 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr_1.6fr]">
+      <div className="relative z-10 mx-auto grid max-w-[1200px] gap-10 px-6 py-14 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr_1.6fr]">
         <div>
           <div className="flex items-center gap-3">
             <BeeLogo className="h-10 w-10" />

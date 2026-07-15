@@ -44,8 +44,8 @@ export function SideNav() {
               <Link
                 href={href}
                 aria-current={active ? "page" : undefined}
-                className={`group flex items-center gap-2.5 rounded-3xl px-3 py-3 text-sm font-semibold transition-all hover:translate-x-0.5 hover:bg-ivory/80 ${
-                  active ? "bg-ivory/90 shadow-sm" : ""
+                className={`group flex items-center gap-2.5 rounded-3xl px-3 py-3 text-sm font-semibold transition-all hover:translate-x-0.5 hover:bg-paper/70 ${
+                  active ? "bg-paper/85 shadow-sm" : ""
                 }`}
               >
                 <span
