@@ -22,7 +22,7 @@ export function FavoritesGrid({
 
   if (favorites.length === 0) {
     return (
-      <div className="mt-10 rounded-[2rem] bg-ivory/70 p-12 text-center">
+      <div className="mt-10 paper-panel rounded-[2rem] p-12 text-center">
         <p className="text-lg">{dict.favorites.empty}</p>
         <Link
           href={`/${locale}/illustrations`}

@@ -132,7 +132,7 @@ export default async function CataloguePage({
       </p>
 
       {illustrations.length === 0 ? (
-        <p className="mt-10 rounded-3xl bg-ivory/70 p-10 text-center">
+        <p className="mt-10 paper-panel rounded-3xl p-10 text-center">
           {dict.catalogue.empty}
         </p>
       ) : (

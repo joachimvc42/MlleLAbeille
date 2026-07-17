@@ -50,7 +50,7 @@ export function CheckoutForm({
 
   if (items.length === 0) {
     return (
-      <div className="rounded-[2rem] bg-ivory/70 p-12 text-center">
+      <div className="paper-panel rounded-[2rem] p-12 text-center">
         <p className="text-lg">{dict.cart.empty}</p>
         <Link
           href={`/${locale}/illustrations`}
@@ -224,7 +224,7 @@ export function CheckoutForm({
       </form>
 
       {/* Order summary */}
-      <aside className="h-fit rounded-[1.8rem] bg-ivory/80 p-6 shadow-plush">
+      <aside className="h-fit paper-panel rounded-[1.8rem] p-6">
         <h2 className="font-display text-lg font-semibold text-rose">
           {dict.cart.title}
         </h2>

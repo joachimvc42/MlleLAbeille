@@ -69,7 +69,7 @@ export function AdminOrders() {
   }
   if (rows.length === 0) {
     return (
-      <p className="rounded-2xl bg-ivory/70 p-8 text-center text-sm">
+      <p className="paper-panel rounded-2xl p-8 text-center text-sm">
         {dict.admin.noOrders}
       </p>
     );
@@ -84,7 +84,7 @@ export function AdminOrders() {
       <p className="mb-6 max-w-2xl text-sm text-rose-ink/80">
         {dict.admin.ordersHelp}
       </p>
-      <div className="overflow-x-auto rounded-[1.6rem] bg-ivory/80 p-4 shadow-plush">
+      <div className="overflow-x-auto paper-panel rounded-[1.6rem] p-4">
         <table className="w-full min-w-[720px] text-left text-sm">
           <thead>
             <tr className="border-b border-rose/15 text-xs uppercase tracking-wide text-rose/70">

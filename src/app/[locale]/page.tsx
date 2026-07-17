@@ -14,6 +14,8 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { HeroScene } from "@/components/home/HeroScene";
 import { ArrowRightIcon } from "@/components/Icons";
 import { ScallopDivider } from "@/components/ScallopDivider";
+import { BeeTrail } from "@/components/decor/BeeTrail";
+import { FloralSprig } from "@/components/decor/FloralSprig";
 import { OrganizationJsonLd, WebsiteJsonLd } from "@/lib/seo/jsonld";
 
 export default async function HomePage({
@@ -39,8 +41,10 @@ export default async function HomePage({
       {/* ------------------------------- Hero ------------------------------ */}
       <section
         aria-labelledby="hero-title"
-        className="home-hero mx-auto grid min-h-[calc(100dvh-72px)] max-w-[1440px] items-center gap-8 overflow-hidden px-6 py-10 sm:px-10 lg:grid-cols-[0.88fr_1.12fr] lg:pl-[230px]"
+        className="home-hero relative mx-auto grid min-h-[calc(100dvh-72px)] max-w-[1440px] items-center gap-8 overflow-hidden px-6 py-10 sm:px-10 lg:grid-cols-[0.88fr_1.12fr] lg:pl-[230px]"
       >
+        <BeeTrail className="absolute right-10 top-14 z-10 hidden h-[60px] w-[150px] lg:block" />
+
         <div className="relative z-10 max-w-xl lg:pl-4">
           <p className="mb-4 text-xs font-bold uppercase tracking-[0.28em] text-honey-deep">
             {dict.common.tagline}
@@ -128,14 +132,16 @@ export default async function HomePage({
               />
             ))}
           </div>
-          <div className="mt-12 text-center">
+          <div className="mt-12 flex items-center justify-center gap-4">
+            <FloralSprig className="hidden h-6 w-14 sm:block" />
             <Link
               href={`/${locale}/illustrations`}
-              className="btn-honey inline-flex items-center gap-2.5 px-7 py-3.5 font-semibold"
+              className="font-display inline-flex items-center gap-2.5 text-lg font-semibold text-rose underline-offset-8 transition-colors hover:text-rose-deep hover:underline"
             >
               {dict.common.discoverAll}
-              <ArrowRightIcon className="h-4 w-4" />
+              <ArrowRightIcon className="h-4.5 w-4.5" />
             </Link>
+            <FloralSprig flip className="hidden h-6 w-14 sm:block" />
           </div>
         </section>
       </div>
