@@ -8,6 +8,7 @@ import Image from "next/image";
 export function HeroScene({ beeAlt }: { beeAlt: string }) {
   return (
     <div className="hero-world relative mx-auto h-[430px] w-full max-w-[620px] select-none sm:h-[540px]">
+      <div aria-hidden="true" className="hero-watercolor-wash" />
       <div aria-hidden="true" className="hero-cloud hero-cloud-one" />
       <div aria-hidden="true" className="hero-cloud hero-cloud-two" />
 
@@ -21,8 +22,15 @@ export function HeroScene({ beeAlt }: { beeAlt: string }) {
         <i className="leaf leaf-two" />
       </div>
 
+      <div aria-hidden="true" className="hero-rug">
+        <span className="hero-rug-fringe hero-rug-fringe-left" />
+        <span className="hero-rug-fringe hero-rug-fringe-right" />
+      </div>
       <div aria-hidden="true" className="hero-cushion" />
-      <div aria-hidden="true" className="hero-throw" />
+      <div aria-hidden="true" className="hero-throw">
+        <span className="hero-throw-stitch hero-throw-stitch-one" />
+        <span className="hero-throw-stitch hero-throw-stitch-two" />
+      </div>
 
       <Image
         src="/illustrations/abeille-sereine/card.webp"
@@ -39,6 +47,12 @@ export function HeroScene({ beeAlt }: { beeAlt: string }) {
       </div>
       <div aria-hidden="true" className="hero-honey">
         <span>Miel<br /><small>de tendresse</small></span>
+      </div>
+      <div aria-hidden="true" className="hero-honey-spoon" />
+      <div aria-hidden="true" className="hero-petals">
+        <i />
+        <i />
+        <i />
       </div>
       <div aria-hidden="true" className="hero-ground" />
     </div>

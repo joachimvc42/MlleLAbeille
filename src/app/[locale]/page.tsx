@@ -32,7 +32,7 @@ export default async function HomePage({
   ]);
 
   return (
-    <>
+    <main className="home-page-shell">
       <OrganizationJsonLd />
       <WebsiteJsonLd locale={locale} />
 
@@ -71,7 +71,7 @@ export default async function HomePage({
       </section>
 
       {/* ----------------------- Collection printemps --------------------- */}
-      <section className="mx-auto max-w-[1300px] px-6 py-16 sm:px-10 lg:pl-[230px]">
+      <section className="seasonal-section mx-auto max-w-[1300px] px-6 py-16 sm:px-10 lg:pl-[230px]">
         <Link
           href={`/${locale}/collections`}
           className="seasonal-card group grid overflow-hidden rounded-[2.7rem] lg:grid-cols-[0.38fr_0.62fr]"
@@ -107,7 +107,7 @@ export default async function HomePage({
 
       {/* --------------------------- Featured six -------------------------- */}
       {/* The pantry: a sunlit shelf where the illustrations are set out. */}
-      <div className="room-honey relative">
+      <div className="room-honey textured-room relative">
         <ScallopDivider color="#faf0d8" className="absolute -top-[25px] left-0" />
         <section
           aria-labelledby="featured-title"
@@ -142,7 +142,7 @@ export default async function HomePage({
 
       {/* ---------------------------- Collections --------------------------- */}
       {/* The sunroom: the illustrated worlds, shelved like glazed pottery. */}
-      <div className="room-sage relative">
+      <div className="room-sage textured-room relative">
         <ScallopDivider color="#e4ebdd" className="absolute -top-[25px] left-0" />
         <section
           aria-labelledby="collections-title"
@@ -158,7 +158,7 @@ export default async function HomePage({
               <Link
                 key={collection.slug}
                 href={`/${locale}/collections/${collection.slug}`}
-                className="illu-card weave-surface group flex flex-col items-center rounded-[2.2rem] p-7 text-center"
+                className="illu-card collection-paper-card weave-surface group flex flex-col items-center rounded-[2.2rem] p-7 text-center"
                 style={{ backgroundColor: collection.tint }}
               >
                 <span
@@ -188,7 +188,7 @@ export default async function HomePage({
 
       {/* ---------------------------- Célébrations --------------------------- */}
       {/* The nursery corner: soft light, gift ribbons, quiet celebration. */}
-      <div className="room-sky relative">
+      <div className="room-sky textured-room relative">
         <ScallopDivider color="#eaf2f7" className="absolute -top-[25px] left-0" />
         <section
           aria-labelledby="celebrations-title"
@@ -204,7 +204,7 @@ export default async function HomePage({
               <li key={celebration.slug}>
                 <Link
                   href={`/${locale}/celebrations/${celebration.slug}`}
-                  className="illu-card weave-surface flex h-full items-start gap-4 rounded-[1.8rem] p-5"
+                  className="illu-card celebration-paper-card weave-surface flex h-full items-start gap-4 rounded-[1.8rem] p-5"
                   style={{ backgroundColor: celebration.tint }}
                 >
                   <span
@@ -230,7 +230,7 @@ export default async function HomePage({
 
       {/* ----------------------------- Mon histoire -------------------------- */}
       {/* The keepsake nook: warm, intimate, close to the wall again. */}
-      <div className="room-rose relative">
+      <div className="room-rose textured-room relative">
         <ScallopDivider color="#f7e9e6" className="absolute -top-[25px] left-0" />
         <section
           aria-labelledby="story-title"
@@ -263,6 +263,6 @@ export default async function HomePage({
           </div>
         </section>
       </div>
-    </>
+    </main>
   );
 }
