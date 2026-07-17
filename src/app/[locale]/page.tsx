@@ -39,25 +39,28 @@ export default async function HomePage({
       {/* ------------------------------- Hero ------------------------------ */}
       <section
         aria-labelledby="hero-title"
-        className="mx-auto grid min-h-[calc(100dvh-72px)] max-w-[1300px] items-center gap-10 px-6 py-12 sm:px-10 lg:grid-cols-[1.02fr_0.98fr] lg:pl-[230px]"
+        className="home-hero mx-auto grid min-h-[calc(100dvh-72px)] max-w-[1440px] items-center gap-8 overflow-hidden px-6 py-10 sm:px-10 lg:grid-cols-[0.88fr_1.12fr] lg:pl-[230px]"
       >
-        <div className="max-w-xl">
+        <div className="relative z-10 max-w-xl lg:pl-4">
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.28em] text-honey-deep">
+            {dict.common.tagline}
+          </p>
           <h1
             id="hero-title"
-            className="text-4xl font-semibold leading-[1.15] text-rose sm:text-5xl"
+            className="text-4xl font-medium leading-[1.13] text-cocoa sm:text-5xl lg:text-[3.4rem]"
           >
             {dict.home.heroTitle}
           </h1>
-          <p className="mt-6 text-lg leading-relaxed sm:text-xl">
+          <p className="mt-6 max-w-lg text-lg leading-relaxed text-cocoa-soft sm:text-xl">
             {dict.home.heroText}
           </p>
           <div
             aria-hidden="true"
-            className="mt-7 h-2 w-40 rounded-full bg-honey/60"
+            className="botanical-divider mt-7"
           />
           <Link
             href={`/${locale}/illustrations`}
-            className="btn-rose mt-9 inline-flex items-center gap-2.5 px-7 py-3.5 font-semibold"
+            className="btn-sage mt-8 inline-flex items-center gap-2.5 px-7 py-3.5 font-semibold"
           >
             {dict.home.heroCta}
             <ArrowRightIcon className="h-4 w-4" />
@@ -65,6 +68,41 @@ export default async function HomePage({
         </div>
 
         <HeroScene beeAlt={dict.home.heroAlt} />
+      </section>
+
+      {/* ----------------------- Collection printemps --------------------- */}
+      <section className="mx-auto max-w-[1300px] px-6 py-16 sm:px-10 lg:pl-[230px]">
+        <Link
+          href={`/${locale}/collections`}
+          className="seasonal-card group grid overflow-hidden rounded-[2.7rem] lg:grid-cols-[0.38fr_0.62fr]"
+        >
+          <span className="relative z-10 flex flex-col justify-center p-8 sm:p-12">
+            <span className="mb-3 text-xs font-bold uppercase tracking-[0.24em] text-honey-deep">
+              {locale === "fr" ? "Nouvelle collection" : "New collection"}
+            </span>
+            <span className="font-display text-3xl text-cocoa sm:text-4xl">
+              {locale === "fr" ? "Le printemps des petites abeilles" : "The little bees’ spring"}
+            </span>
+            <span className="mt-4 max-w-sm leading-relaxed text-cocoa-soft">
+              {locale === "fr"
+                ? "Jardiner, lire, flâner au soleil… une collection tendre déclinée au féminin comme au masculin."
+                : "Gardening, reading, lingering in the sun… a gentle collection with feminine and masculine characters."}
+            </span>
+            <span className="mt-7 inline-flex items-center gap-2 font-semibold text-olive">
+              {locale === "fr" ? "Découvrir la collection" : "Discover the collection"}
+              <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </span>
+          </span>
+          <span className="relative min-h-[310px] overflow-hidden sm:min-h-[390px]">
+            <Image
+              src="/brand/collection-printemps.webp"
+              alt={locale === "fr" ? "Collection printemps des petites abeilles" : "Little bees spring collection"}
+              fill
+              sizes="(max-width: 1024px) 100vw, 65vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.018]"
+            />
+          </span>
+        </Link>
       </section>
 
       {/* --------------------------- Featured six -------------------------- */}
