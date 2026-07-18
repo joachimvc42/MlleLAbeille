@@ -32,7 +32,7 @@ export function Footer({
       className="relative mt-24 border-t border-rose/10 bg-paper"
       style={{
         backgroundImage:
-          "var(--weave), linear-gradient(180deg, rgba(246,237,218,.4), rgba(232,213,177,.55))",
+          "linear-gradient(180deg, rgba(246,237,218,.4), rgba(232,213,177,.55))",
       }}
     >
       <ScallopDivider color="#f6edda" className="absolute -top-[25px] left-0" />

@@ -10,6 +10,7 @@ import {
   getFeaturedIllustrations,
 } from "@/lib/catalogue";
 import { IllustrationCard } from "@/components/shop/IllustrationCard";
+import { WingFlutter } from "@/components/shop/WingFlutter";
 import { SectionHeading } from "@/components/SectionHeading";
 import { HeroScene } from "@/components/home/HeroScene";
 import { ArrowRightIcon } from "@/components/Icons";
@@ -157,11 +158,11 @@ export default async function HomePage({
               <Link
                 key={collection.slug}
                 href={`/${locale}/collections/${collection.slug}`}
-                className="illu-card weave-surface group flex flex-col items-center rounded-[2.2rem] p-7 text-center"
+                className="illu-card group flex flex-col items-center rounded-[2.2rem] p-7 text-center"
                 style={{ backgroundColor: collection.tint }}
               >
                 <span
-                  className="relative z-10 block h-28 w-28 overflow-hidden rounded-full shadow-plush transition-transform duration-300 group-hover:scale-105"
+                  className="relative z-10 block h-28 w-28 overflow-hidden rounded-full shadow-plush"
                   style={{ backgroundColor: collection.tint }}
                 >
                   <Image
@@ -170,7 +171,11 @@ export default async function HomePage({
                     width={320}
                     height={320}
                     sizes="112px"
-                    className="illu-card-img h-full w-full object-cover"
+                    className="h-full w-full object-cover"
+                  />
+                  <WingFlutter
+                    src={`/illustrations/${collection.coverIllustrationSlug}/thumb.webp`}
+                    sizes="112px"
                   />
                 </span>
                 <span className="font-display relative z-10 mt-5 text-xl font-semibold text-rose">
@@ -203,7 +208,7 @@ export default async function HomePage({
               <li key={celebration.slug}>
                 <Link
                   href={`/${locale}/celebrations/${celebration.slug}`}
-                  className="illu-card weave-surface flex h-full items-start gap-4 rounded-[1.8rem] p-5"
+                  className="illu-card flex h-full items-start gap-4 rounded-[1.8rem] p-5"
                   style={{ backgroundColor: celebration.tint }}
                 >
                   <span

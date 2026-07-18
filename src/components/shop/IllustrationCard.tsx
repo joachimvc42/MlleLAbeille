@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Illustration } from "@/lib/catalogue/types";
 import type { Locale } from "@/lib/i18n/config";
 import { FavoriteButton } from "./FavoriteButton";
+import { WingFlutter } from "./WingFlutter";
 
 /**
  * Gallery card: the illustration is the hero — no price, no product
@@ -38,8 +39,9 @@ export function IllustrationCard({
           height={800}
           priority={priority}
           sizes={sizes}
-          className="illu-card-img aspect-square w-full object-cover"
+          className="aspect-square w-full object-cover"
         />
+        <WingFlutter src={cardSrc} sizes={sizes} />
       </Link>
       <FavoriteButton
         slug={illustration.slug}

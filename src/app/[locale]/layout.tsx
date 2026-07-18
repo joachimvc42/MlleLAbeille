@@ -10,6 +10,7 @@ import { CustomCursor } from "@/components/CustomCursor";
 import { TopBar } from "@/components/layout/TopBar";
 import { SideNav } from "@/components/layout/SideNav";
 import { Footer } from "@/components/layout/Footer";
+import { PageBlooms } from "@/components/decor/PageBlooms";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -95,6 +96,7 @@ export default async function RootLayout({
           <a href="#contenu" className="skip-link">
             {dict.nav.skipToContent}
           </a>
+          <PageBlooms />
           <TopBar />
           <SideNav />
           <main id="contenu" className="pt-[72px]">

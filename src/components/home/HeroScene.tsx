@@ -21,43 +21,66 @@ export function HeroScene({ beeAlt }: { beeAlt: string }) {
         className="h-auto w-full"
       />
 
-      {/* Steam rising from the tea cup, waving like warm air. */}
+      {/* Fine white steam over the tea, undulating along its whole length. */}
       <svg
         aria-hidden="true"
-        viewBox="0 0 100 220"
-        className="pointer-events-none absolute left-[10.5%] top-[24%] h-[42%] w-[14%]"
+        viewBox="0 0 100 230"
+        className="steam-svg pointer-events-none absolute left-[11%] top-[22%] h-[44%] w-[13%]"
       >
         <defs>
-          <filter id="steam-soften" x="-60%" y="-30%" width="220%" height="160%">
-            <feGaussianBlur stdDeviation="2.6" />
+          <filter id="steam-soften" x="-60%" y="-20%" width="220%" height="140%">
+            <feGaussianBlur stdDeviation="1.5" />
           </filter>
-          <linearGradient id="steam-fade" x1="0" y1="1" x2="0" y2="0">
-            <stop offset="0" stopColor="#bda88c" stopOpacity="0.55" />
-            <stop offset="0.65" stopColor="#c9b79d" stopOpacity="0.34" />
-            <stop offset="1" stopColor="#d6c7ae" stopOpacity="0" />
+          <linearGradient id="steam-white" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0" stopColor="#fffdf7" stopOpacity="0.85" />
+            <stop offset="0.7" stopColor="#fffef9" stopOpacity="0.45" />
+            <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
           </linearGradient>
         </defs>
         <g
           filter="url(#steam-soften)"
-          stroke="url(#steam-fade)"
+          stroke="url(#steam-white)"
           strokeLinecap="round"
           fill="none"
         >
-          <path
-            className="steam-path"
-            strokeWidth="7"
-            d="M42 212 C 30 186, 56 168, 44 140 C 33 115, 57 96, 46 68 C 38 47, 52 32, 47 14"
-          />
-          <path
-            className="steam-path"
-            strokeWidth="5.5"
-            d="M62 208 C 74 184, 50 162, 63 136 C 74 113, 52 94, 64 68 C 72 50, 60 34, 66 20"
-          />
-          <path
-            className="steam-path"
-            strokeWidth="4.5"
-            d="M52 214 C 46 194, 60 178, 53 154 C 46 132, 60 116, 54 94"
-          />
+          <path strokeWidth="3.4" d="M46 226 C 36 202, 58 184, 46 156 C 36 132, 58 114, 46 88 C 38 68, 56 52, 46 28 C 42 18, 48 10, 45 2">
+            <animate
+              attributeName="d"
+              dur="4.6s"
+              repeatCount="indefinite"
+              calcMode="spline"
+              keySplines="0.42 0 0.58 1;0.42 0 0.58 1"
+              values="M46 226 C 36 202, 58 184, 46 156 C 36 132, 58 114, 46 88 C 38 68, 56 52, 46 28 C 42 18, 48 10, 45 2;M46 226 C 56 202, 34 184, 46 156 C 56 132, 34 114, 46 88 C 54 68, 36 52, 46 28 C 50 18, 42 10, 47 2;M46 226 C 36 202, 58 184, 46 156 C 36 132, 58 114, 46 88 C 38 68, 56 52, 46 28 C 42 18, 48 10, 45 2"
+            />
+            <animate
+              attributeName="opacity"
+              dur="4.6s"
+              repeatCount="indefinite"
+              values="0.9;0.65;0.9"
+            />
+          </path>
+          <path strokeWidth="2.4" opacity="0.75" d="M60 218 C 68 196, 50 178, 60 152 C 69 128, 51 110, 60 86 C 66 68, 54 54, 60 34">
+            <animate
+              attributeName="d"
+              dur="5.6s"
+              begin="-2.1s"
+              repeatCount="indefinite"
+              calcMode="spline"
+              keySplines="0.42 0 0.58 1;0.42 0 0.58 1"
+              values="M60 218 C 68 196, 50 178, 60 152 C 69 128, 51 110, 60 86 C 66 68, 54 54, 60 34;M60 218 C 52 196, 68 178, 60 152 C 51 128, 69 110, 60 86 C 54 68, 66 54, 60 34;M60 218 C 68 196, 50 178, 60 152 C 69 128, 51 110, 60 86 C 66 68, 54 54, 60 34"
+            />
+          </path>
+          <path strokeWidth="2" opacity="0.6" d="M34 214 C 28 194, 42 178, 34 154 C 27 132, 41 116, 34 96 C 30 84, 38 72, 34 58">
+            <animate
+              attributeName="d"
+              dur="6.4s"
+              begin="-3.4s"
+              repeatCount="indefinite"
+              calcMode="spline"
+              keySplines="0.42 0 0.58 1;0.42 0 0.58 1"
+              values="M34 214 C 28 194, 42 178, 34 154 C 27 132, 41 116, 34 96 C 30 84, 38 72, 34 58;M34 214 C 40 194, 26 178, 34 154 C 41 132, 27 116, 34 96 C 38 84, 30 72, 34 58;M34 214 C 28 194, 42 178, 34 154 C 27 132, 41 116, 34 96 C 30 84, 38 72, 34 58"
+            />
+          </path>
         </g>
       </svg>
     </div>

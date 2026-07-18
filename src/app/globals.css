@@ -152,16 +152,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/*
- * A tiny woven-linen tile, reused as one background layer across the room
- * washes and the stitched fabric surfaces below. Kept as a single shared
- * data URI so every textile surface in the house comes from the same
- * "bolt of cloth" rather than looking like unrelated patterns.
- */
-:root {
-  --weave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13'%3E%3Cpath d='M0 13L13 0M-1 1l2-2M12 14l2-2' stroke='%239d5f59' stroke-opacity='0.08' stroke-width='1'/%3E%3C/svg%3E");
-}
-
 body {
   font-family: var(--font-sans);
   color: var(--color-rose-ink);
@@ -204,30 +194,24 @@ body {
 
 /* ---------------------------------------------------------------------------
    Rooms: soft, blotchy wall washes that turn the homepage scroll into a
-   walk from one room of the house into the next. Backgrounds only (never
-   pseudo-elements) so they always paint behind content, no matter what —
-   and always translucent over the shared cream, never a flat solid slab.
+   walk from one room of the house into the next. Pure watercolour glows in
+   the palette of the reference artwork — no woven pattern, no lines —
+   always translucent over the shared cream, never a flat solid slab.
 --------------------------------------------------------------------------- */
 .room-honey {
   background-image:
-    var(--weave),
-    radial-gradient(ellipse 140% 90% at 15% 0%, rgba(227, 179, 81, 0.15), transparent 60%),
-    radial-gradient(ellipse 120% 90% at 92% 100%, rgba(227, 179, 81, 0.1), transparent 55%);
-  background-repeat: repeat, no-repeat, no-repeat;
+    radial-gradient(ellipse 140% 90% at 15% 0%, rgba(232, 185, 95, 0.14), transparent 60%),
+    radial-gradient(ellipse 120% 90% at 92% 100%, rgba(240, 205, 130, 0.1), transparent 55%);
 }
 .room-sage {
   background-image:
-    var(--weave),
-    radial-gradient(ellipse 140% 90% at 85% 0%, rgba(159, 177, 140, 0.17), transparent 60%),
-    radial-gradient(ellipse 120% 90% at 8% 100%, rgba(159, 177, 140, 0.11), transparent 55%);
-  background-repeat: repeat, no-repeat, no-repeat;
+    radial-gradient(ellipse 140% 90% at 85% 0%, rgba(168, 181, 133, 0.14), transparent 60%),
+    radial-gradient(ellipse 120% 90% at 8% 100%, rgba(168, 181, 133, 0.09), transparent 55%);
 }
 .room-sky {
   background-image:
-    var(--weave),
-    radial-gradient(ellipse 140% 90% at 20% 10%, rgba(143, 180, 204, 0.16), transparent 60%),
-    radial-gradient(ellipse 120% 90% at 88% 95%, rgba(143, 180, 204, 0.1), transparent 55%);
-  background-repeat: repeat, no-repeat, no-repeat;
+    radial-gradient(ellipse 140% 90% at 20% 10%, rgba(184, 205, 220, 0.14), transparent 60%),
+    radial-gradient(ellipse 120% 90% at 88% 95%, rgba(184, 205, 220, 0.09), transparent 55%);
 }
 .room-rose {
   background-image: radial-gradient(
@@ -306,12 +290,14 @@ h3,
   box-shadow: 0 30px 70px rgba(113, 82, 53, 0.15);
 }
 
-/* A woven, tactile surface — a placemat, not a white card. */
+/* A warm fabric surface with a stitched hem — a placemat, not a white card. */
 .stitched {
   position: relative;
-  background-image: var(--weave),
-    linear-gradient(150deg, rgba(250, 240, 216, 0.97), rgba(232, 213, 177, 0.95));
-  background-repeat: repeat, no-repeat;
+  background-image: linear-gradient(
+    150deg,
+    rgba(250, 240, 216, 0.97),
+    rgba(232, 213, 177, 0.95)
+  );
   border: 1px solid rgba(201, 135, 129, 0.16);
   box-shadow:
     var(--shadow-plush),
@@ -324,13 +310,6 @@ h3,
   border: 1.5px dashed rgba(227, 179, 81, 0.35);
   border-radius: inherit;
   pointer-events: none;
-}
-
-/* Adds the linen weave over any element's own background-color, so tinted
-   cards (collections, celebrations) keep their hue while gaining texture. */
-.weave-surface {
-  background-image: var(--weave);
-  background-repeat: repeat;
 }
 
 /* Soft suede, for the hanging bookmark navigation: napped grain over a
@@ -357,10 +336,7 @@ h3,
 /* A sheet of warm paper for informational panels (empty states, summaries)
    — replaces every last translucent-white slab. */
 .paper-panel {
-  background-image:
-    var(--weave),
-    linear-gradient(160deg, #fdf7ea 0%, #f4e8d2 100%);
-  background-repeat: repeat, no-repeat;
+  background-image: linear-gradient(160deg, #fdf7ea 0%, #f4e8d2 100%);
   border: 1px solid rgba(157, 95, 89, 0.13);
   box-shadow:
     0 14px 36px rgba(125, 93, 72, 0.09),
@@ -379,18 +355,48 @@ h3,
     transform 0.35s ease,
     box-shadow 0.35s ease;
 }
+/*
+ * Only the bee's wings move on hover: two soft-masked copies of the very
+ * same picture, clipped to the wing zones and rocked from the wing roots.
+ * The tile and the picture itself stay perfectly still.
+ */
+.wing-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+.wing-layer-left {
+  -webkit-mask-image: radial-gradient(
+    ellipse 15% 14% at 32% 52%,
+    #000 45%,
+    transparent 78%
+  );
+  mask-image: radial-gradient(ellipse 15% 14% at 32% 52%, #000 45%, transparent 78%);
+  transform-origin: 44% 56%;
+}
+.wing-layer-right {
+  -webkit-mask-image: radial-gradient(
+    ellipse 15% 14% at 68% 52%,
+    #000 45%,
+    transparent 78%
+  );
+  mask-image: radial-gradient(ellipse 15% 14% at 68% 52%, #000 45%, transparent 78%);
+  transform-origin: 56% 56%;
+}
 @media (hover: hover) {
   .illu-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 16px 36px rgba(139, 105, 70, 0.16);
+    box-shadow: 0 14px 34px rgba(139, 105, 70, 0.17);
   }
-  /* The bee wakes and beats her wings when the pointer greets her. */
-  .illu-card:hover .illu-card-img {
-    animation: bee-buzz 0.26s ease-in-out infinite;
+  .illu-card:hover .wing-layer {
+    opacity: 1;
   }
-}
-.illu-card-img {
-  transition: transform 0.45s ease;
+  .illu-card:hover .wing-layer-left {
+    animation: wing-rock-left 0.14s ease-in-out infinite alternate;
+  }
+  .illu-card:hover .wing-layer-right {
+    animation: wing-rock-right 0.14s ease-in-out infinite alternate;
+  }
 }
 
 /* Ribbon-like buttons. */
@@ -464,48 +470,24 @@ h3,
 
 /* ---------------------------------------------------------------------------
    Living details: the wing-beat of a gallery bee under the pointer, and
-   the steam waving over the hero's tea cup.
+   the steam undulating over the hero's tea cup (SMIL path morph — the
+   whole wisp ripples like warm air rather than swaying as one block).
 --------------------------------------------------------------------------- */
-@keyframes bee-buzz {
-  0%,
-  100% {
-    transform: translateY(-2px) rotate(-1.3deg);
+@keyframes wing-rock-left {
+  from {
+    transform: rotate(0deg);
   }
-  50% {
-    transform: translateY(-4px) rotate(1.3deg);
-  }
-}
-@keyframes steam-wave {
-  0%,
-  100% {
-    transform: translate(0, 0) scaleY(1);
-    opacity: 0.5;
-  }
-  25% {
-    transform: translate(3.5px, -7px) scaleY(1.05);
-    opacity: 0.75;
-  }
-  50% {
-    transform: translate(-3px, -12px) scaleY(1.09);
-    opacity: 0.6;
-  }
-  75% {
-    transform: translate(2.5px, -6px) scaleY(1.04);
-    opacity: 0.7;
+  to {
+    transform: rotate(-6deg);
   }
 }
-.steam-path {
-  transform-box: fill-box;
-  transform-origin: 50% 100%;
-  animation: steam-wave 3.6s ease-in-out infinite;
-}
-.steam-path:nth-of-type(2) {
-  animation-duration: 4.2s;
-  animation-delay: -1.4s;
-}
-.steam-path:nth-of-type(3) {
-  animation-duration: 4.8s;
-  animation-delay: -2.6s;
+@keyframes wing-rock-right {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(6deg);
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -521,6 +503,10 @@ h3,
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  /* SMIL ignores the override above, so the (decorative) steam hides. */
+  .steam-svg {
+    display: none;
   }
 }
 

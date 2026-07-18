@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useI18n } from "@/lib/i18n/I18nProvider";
 import { BookIcon, FlowerIcon, GiftIcon } from "@/components/Icons";
-import { FloralSprig } from "@/components/decor/FloralSprig";
+import { FlowerCluster } from "@/components/decor/FlowerCluster";
 
 /*
  * The bookmark: a suede tag hanging from a cord below the header, its hem
@@ -60,7 +60,7 @@ export function SideNav() {
           className="absolute left-1/2 top-3.5 z-10 block h-4 w-4 -translate-x-1/2 rounded-full border border-[#d9c39a] bg-[#f8efdd] shadow-[inset_0_1px_2px_rgba(125,93,72,0.35)]"
         />
 
-        <FloralSprig className="relative z-10 mx-auto mt-4 h-6 w-14 opacity-80" />
+        <FlowerCluster className="relative z-10 mx-auto mt-3 h-12 w-10 opacity-90" />
 
         <ul className="relative z-10 mt-1 space-y-1">
           {items.map(({ href, label, icon: Icon }) => {
@@ -90,8 +90,14 @@ export function SideNav() {
           })}
         </ul>
 
-        <FloralSprig flip className="relative z-10 mx-auto mt-3 h-6 w-14 opacity-80" />
+        <FlowerCluster
+          flip
+          className="relative z-10 mx-auto mt-2 h-14 w-12 opacity-90"
+        />
       </div>
+
+      {/* wildflowers growing at the foot of the bookmark, on the wall */}
+      <FlowerCluster className="mx-auto mt-5 h-28 w-24 opacity-85" />
     </nav>
   );
 }
