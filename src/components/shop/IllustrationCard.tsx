@@ -6,8 +6,8 @@ import { FavoriteButton } from "./FavoriteButton";
 
 /**
  * Gallery card: the illustration is the hero — no price, no product
- * mockup. A soft ceramic tile with a gentle lift, and (per the reference
- * artwork) an optional small hand-written caption beneath the tile.
+ * mockup. A flat cream tile with a thin tan border, per the reference
+ * artwork, and an optional small caption beneath the tile.
  */
 export function IllustrationCard({
   illustration,
@@ -30,7 +30,6 @@ export function IllustrationCard({
         href={`/${locale}/illustrations/${illustration.slug}`}
         aria-label={illustration.title[locale]}
         className="illu-card block overflow-hidden"
-        style={{ backgroundColor: illustration.image.background }}
       >
         <Image
           src={cardSrc}
@@ -44,12 +43,12 @@ export function IllustrationCard({
       </Link>
       <FavoriteButton
         slug={illustration.slug}
-        className="absolute right-4 top-4 opacity-90"
+        className="absolute right-3 top-3 opacity-90"
       />
       {caption && (
         <p
           aria-hidden="true"
-          className="font-display mt-3 text-center text-[0.95rem] italic text-rose-ink/80"
+          className="font-display mt-2.5 text-center text-[0.95rem] text-cocoa-soft"
         >
           {illustration.title[locale]}
         </p>

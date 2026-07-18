@@ -5,7 +5,7 @@ export const en: Dictionary = {
     brand: "MlleLAbeille",
     editorialBrand: "Mademoiselle l’Abeille",
     tagline: "Softness · Joy · Little pleasures",
-    discoverAll: "Discover all the illustrations",
+    discoverAll: "See all the illustrations",
     seeMore: "See more",
     backHome: "Back home",
     loading: "A moment of softness…",
@@ -33,7 +33,7 @@ export const en: Dictionary = {
     story: "My story",
     illustrations: "The illustrations",
     searchLabel: "Search",
-    searchPlaceholder: "In the mood for… yoga, baby, yellow?",
+    searchPlaceholder: "Search for an illustration…",
     account: "My account",
     signIn: "Sign in",
     cart: "Cart",
@@ -49,9 +49,9 @@ export const en: Dictionary = {
   home: {
     heroTitle: "Welcome to the world of Mademoiselle l’Abeille.",
     heroText: "A little world full of softness, colours and everyday joys.",
-    heroCta: "Start the stroll",
+    heroCta: "Discover the illustrations",
     heroAlt:
-      "Mademoiselle l’Abeille, a small watercolour bee with rosy cheeks, smiling peacefully",
+      "Mademoiselle l’Abeille reading on her quilted cushion over a knitted throw, beside a steaming cup of tea, a jar of honey and a pitcher of wildflowers",
     featuredTitle: "Choose the illustration that will keep you company today",
     featuredIntro:
       "Every illustration is a little companion: a wink resting on a mug, a print, a card to give.",

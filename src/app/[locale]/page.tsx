@@ -14,8 +14,8 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { HeroScene } from "@/components/home/HeroScene";
 import { ArrowRightIcon } from "@/components/Icons";
 import { ScallopDivider } from "@/components/ScallopDivider";
-import { BeeTrail } from "@/components/decor/BeeTrail";
 import { FloralSprig } from "@/components/decor/FloralSprig";
+import { HeartDashes } from "@/components/decor/HeartDashes";
 import { OrganizationJsonLd, WebsiteJsonLd } from "@/lib/seo/jsonld";
 
 export default async function HomePage({
@@ -41,27 +41,19 @@ export default async function HomePage({
       {/* ------------------------------- Hero ------------------------------ */}
       <section
         aria-labelledby="hero-title"
-        className="home-hero relative mx-auto grid min-h-[calc(100dvh-72px)] max-w-[1440px] items-center gap-8 overflow-hidden px-6 py-10 sm:px-10 lg:grid-cols-[0.88fr_1.12fr] lg:pl-[230px]"
+        className="home-hero relative mx-auto grid min-h-[calc(100dvh-72px)] max-w-[1440px] items-center gap-8 overflow-hidden px-6 py-10 sm:px-10 lg:grid-cols-[0.86fr_1.14fr] lg:pl-[230px]"
       >
-        <BeeTrail className="absolute right-10 top-14 z-10 hidden h-[60px] w-[150px] lg:block" />
-
-        <div className="relative z-10 max-w-xl lg:pl-4">
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.28em] text-honey-deep">
-            {dict.common.tagline}
-          </p>
+        <div className="relative z-10 max-w-xl lg:pl-2">
           <h1
             id="hero-title"
-            className="text-4xl font-medium leading-[1.13] text-cocoa sm:text-5xl lg:text-[3.4rem]"
+            className="text-center text-4xl font-medium leading-[1.16] text-cocoa sm:text-5xl lg:text-[2.9rem]"
           >
             {dict.home.heroTitle}
           </h1>
+          <HeartDashes className="mt-5" />
           <p className="mt-6 max-w-lg text-lg leading-relaxed text-cocoa-soft sm:text-xl">
             {dict.home.heroText}
           </p>
-          <div
-            aria-hidden="true"
-            className="botanical-divider mt-7"
-          />
           <Link
             href={`/${locale}/illustrations`}
             className="btn-sage mt-8 inline-flex items-center gap-2.5 px-7 py-3.5 font-semibold"
@@ -122,13 +114,14 @@ export default async function HomePage({
             title={dict.home.featuredTitle}
             intro={dict.home.featuredIntro}
           />
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
             {featured.map((illustration, index) => (
               <IllustrationCard
                 key={illustration.slug}
                 illustration={illustration}
                 locale={locale}
                 priority={index < 3}
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 190px"
               />
             ))}
           </div>
@@ -136,7 +129,7 @@ export default async function HomePage({
             <FloralSprig className="hidden h-6 w-14 sm:block" />
             <Link
               href={`/${locale}/illustrations`}
-              className="font-display inline-flex items-center gap-2.5 text-lg font-semibold text-rose underline-offset-8 transition-colors hover:text-rose-deep hover:underline"
+              className="font-display inline-flex items-center gap-2.5 text-lg font-semibold text-cocoa underline-offset-8 transition-colors hover:text-rose-deep hover:underline"
             >
               {dict.common.discoverAll}
               <ArrowRightIcon className="h-4.5 w-4.5" />
@@ -177,7 +170,7 @@ export default async function HomePage({
                     width={320}
                     height={320}
                     sizes="112px"
-                    className="h-full w-full object-cover"
+                    className="illu-card-img h-full w-full object-cover"
                   />
                 </span>
                 <span className="font-display relative z-10 mt-5 text-xl font-semibold text-rose">
