@@ -88,6 +88,16 @@ export function GiftIcon(props: IconProps) {
   );
 }
 
+export function BookIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" {...base} {...props}>
+      <path d="M12 6.5C10.2 4.9 7.4 4.4 4 4.7v13.6c3.4-.3 6.2.2 8 1.8 1.8-1.6 4.6-2.1 8-1.8V4.7c-3.4-.3-6.2.2-8 1.8Z" />
+      <path d="M12 6.5v13.6" />
+      <path d="M6.5 8.6c1.4 0 2.6.2 3.6.7M6.5 11.6c1.4 0 2.6.2 3.6.7M17.5 8.6c-1.4 0-2.6.2-3.6.7M17.5 11.6c-1.4 0-2.6.2-3.6.7" />
+    </svg>
+  );
+}
+
 export function BeeMiniIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 24 24" {...base} {...props}>

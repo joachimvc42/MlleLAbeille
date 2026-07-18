@@ -46,6 +46,9 @@ export function TopBar() {
           <span className="leading-tight">
             <span className="font-display block text-xl font-semibold text-rose">
               Mlle l’Abeille
+              <span aria-hidden="true" className="ml-0.5 align-super text-[0.6rem]">
+                ♥
+              </span>
             </span>
             <span className="block text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-rose/70">
               {dict.common.tagline}
@@ -128,7 +131,7 @@ export function TopBar() {
           >
             <BagIcon className="h-5 w-5" />
             <span className={actionLabel}>{dict.nav.cart}</span>
-            {ready && count > 0 && (
+            {ready && (
               <span
                 aria-hidden="true"
                 className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-honey px-1 text-[0.65rem] font-bold text-[#5c4321] shadow-sm"

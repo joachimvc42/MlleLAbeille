@@ -15,12 +15,12 @@ export function SectionHeading({
 }) {
   return (
     <div className="mx-auto max-w-2xl text-center">
-      <h2 id={id} className="text-3xl font-semibold text-rose sm:text-4xl">
+      <h2 id={id} className="text-3xl font-semibold text-cocoa sm:text-4xl">
         {title}
       </h2>
       <HeartDashes className="mt-4" />
       {intro && (
-        <p className="mt-4 text-base leading-relaxed text-rose-ink/90">
+        <p className="mt-4 text-base leading-relaxed text-cocoa-soft">
           {intro}
         </p>
       )}

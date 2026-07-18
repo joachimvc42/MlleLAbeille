@@ -27,8 +27,8 @@
   --color-sky-soft: #eaf2f7;
   --color-lavender: #e4dded;
   --color-blush: #f6e7df;
-  --color-cocoa: #80502f;
-  --color-cocoa-soft: #765d49;
+  --color-cocoa: #6f4b30;
+  --color-cocoa-soft: #7b5f46;
   --color-olive: #7f8754;
 
   /* Type */
@@ -282,25 +282,6 @@ h3,
   );
 }
 
-/* A thin gilded thread with a heart at its centre, under the hero text. */
-.botanical-divider {
-  width: 10rem;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(196, 144, 72, 0.7), transparent);
-  position: relative;
-}
-.botanical-divider::after {
-  content: "♥";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  padding: 0 0.65rem;
-  transform: translate(-50%, -52%);
-  color: #c99770;
-  background: #f8efdd;
-  font-size: 0.8rem;
-}
-
 /* Seasonal collection banner: warm paper with a dashed keepsake border. */
 .seasonal-card {
   position: relative;
@@ -358,17 +339,17 @@ h3,
   position: relative;
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.62 0 0 0 0 0.47 0 0 0 0 0.33 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E"),
-    linear-gradient(168deg, #fbf3e2 0%, #f3e6cb 55%, #ecdcba 100%);
-  border: 1px solid rgba(157, 95, 89, 0.16);
+    linear-gradient(168deg, #fdf8ec 0%, #f8efdb 55%, #f1e5cb 100%);
+  border: 1px solid rgba(176, 138, 99, 0.28);
   box-shadow:
-    0 22px 45px rgba(125, 93, 72, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    0 22px 45px rgba(125, 93, 72, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .suede::before {
   content: "";
   position: absolute;
   inset: 8px;
-  border: 1.5px dashed rgba(178, 110, 104, 0.32);
+  border: 1.5px dashed rgba(196, 154, 110, 0.5);
   border-radius: inherit;
   pointer-events: none;
 }
@@ -386,37 +367,26 @@ h3,
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
-/* Ceramic-like card for illustrations: a rimmed tile with a glaze catch-light. */
+/* Gallery tile, matched to the reference artwork: a flat sheet of warm
+   cream with a thin tan border, like a card laid out on the table. */
 .illu-card {
   position: relative;
-  border-radius: var(--radius-blob);
-  box-shadow:
-    0 0 0 1px rgba(157, 95, 89, 0.08),
-    0 14px 40px rgba(117, 89, 70, 0.1);
+  border-radius: 1.4rem;
+  background: linear-gradient(160deg, #fdf8ec, #f8efdc);
+  border: 1px solid rgba(199, 168, 120, 0.42);
+  box-shadow: 0 10px 26px rgba(139, 105, 70, 0.1);
   transition:
     transform 0.35s ease,
     box-shadow 0.35s ease;
 }
-.illu-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: inherit;
-  background:
-    linear-gradient(165deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 30%),
-    linear-gradient(0deg, rgba(74, 50, 30, 0.1) 0%, rgba(74, 50, 30, 0) 18%);
-  mix-blend-mode: soft-light;
-}
 @media (hover: hover) {
   .illu-card:hover {
-    transform: translateY(-6px);
-    box-shadow:
-      0 0 0 1px rgba(157, 95, 89, 0.12),
-      var(--shadow-hover);
+    transform: translateY(-5px);
+    box-shadow: 0 16px 36px rgba(139, 105, 70, 0.16);
   }
+  /* The bee wakes and beats her wings when the pointer greets her. */
   .illu-card:hover .illu-card-img {
-    transform: translateY(-4px) rotate(0.6deg) scale(1.015);
+    animation: bee-buzz 0.26s ease-in-out infinite;
   }
 }
 .illu-card-img {
@@ -467,7 +437,7 @@ h3,
 .btn-sage {
   color: #fffaf0;
   border-radius: 999px;
-  background: linear-gradient(135deg, #92996a, #7d8457);
+  background: linear-gradient(135deg, #9c9572, #7f7b58);
   box-shadow: 0 12px 28px rgba(93, 99, 58, 0.24);
   transition:
     transform 0.25s ease,
@@ -491,6 +461,52 @@ h3,
 }
 
 } /* end @layer components */
+
+/* ---------------------------------------------------------------------------
+   Living details: the wing-beat of a gallery bee under the pointer, and
+   the steam waving over the hero's tea cup.
+--------------------------------------------------------------------------- */
+@keyframes bee-buzz {
+  0%,
+  100% {
+    transform: translateY(-2px) rotate(-1.3deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(1.3deg);
+  }
+}
+@keyframes steam-wave {
+  0%,
+  100% {
+    transform: translate(0, 0) scaleY(1);
+    opacity: 0.5;
+  }
+  25% {
+    transform: translate(3.5px, -7px) scaleY(1.05);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translate(-3px, -12px) scaleY(1.09);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translate(2.5px, -6px) scaleY(1.04);
+    opacity: 0.7;
+  }
+}
+.steam-path {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: steam-wave 3.6s ease-in-out infinite;
+}
+.steam-path:nth-of-type(2) {
+  animation-duration: 4.2s;
+  animation-delay: -1.4s;
+}
+.steam-path:nth-of-type(3) {
+  animation-duration: 4.8s;
+  animation-delay: -2.6s;
+}
 
 /* ---------------------------------------------------------------------------
    Motion & accessibility

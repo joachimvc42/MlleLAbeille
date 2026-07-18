@@ -3,7 +3,7 @@ export const fr = {
     brand: "MlleLAbeille",
     editorialBrand: "Mademoiselle l’Abeille",
     tagline: "Douceur · Joie · Petits bonheurs",
-    discoverAll: "Découvrir toutes les illustrations",
+    discoverAll: "Voir toutes les illustrations",
     seeMore: "Voir plus",
     backHome: "Retour à l’accueil",
     loading: "Un instant de douceur…",
@@ -31,7 +31,7 @@ export const fr = {
     story: "Mon histoire",
     illustrations: "Les illustrations",
     searchLabel: "Rechercher",
-    searchPlaceholder: "Une envie ? yoga, naissance, jaune…",
+    searchPlaceholder: "Rechercher une illustration…",
     account: "Mon compte",
     signIn: "Se connecter",
     cart: "Panier",
@@ -48,9 +48,9 @@ export const fr = {
     heroTitle: "Bienvenue dans l’univers de Mademoiselle l’Abeille.",
     heroText:
       "Un petit monde rempli de douceur, de couleurs et de petits bonheurs.",
-    heroCta: "Commencer la promenade",
+    heroCta: "Découvrir les illustrations",
     heroAlt:
-      "Mademoiselle l’Abeille, petite abeille aquarellée aux joues roses, souriant paisiblement",
+      "Mademoiselle l’Abeille lisant sur son coussin matelassé posé sur un plaid tricoté, près d’une tasse de thé fumante, d’un pot de miel de tendresse et d’un pichet de fleurs sauvages",
     featuredTitle: "Choisissez l’illustration qui vous accompagnera aujourd’hui",
     featuredIntro:
       "Chaque illustration est une petite compagnie : un clin d’œil posé sur un mug, une affiche, une carte à offrir.",

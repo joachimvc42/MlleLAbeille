@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useI18n } from "@/lib/i18n/I18nProvider";
-import { BeeMiniIcon, FlowerIcon, GiftIcon } from "@/components/Icons";
+import { BookIcon, FlowerIcon, GiftIcon } from "@/components/Icons";
 import { FloralSprig } from "@/components/decor/FloralSprig";
 
 /*
@@ -29,7 +29,7 @@ export function SideNav() {
     {
       href: `/${locale}/mon-histoire`,
       label: dict.nav.story,
-      icon: BeeMiniIcon,
+      icon: BookIcon,
     },
   ];
 
@@ -46,7 +46,7 @@ export function SideNav() {
       >
         <path
           d="M75 0 C 68 10, 66 18, 71 30 M75 0 C 82 12, 84 20, 79 30"
-          stroke="#C8A87C"
+          stroke="#b3905e"
           strokeWidth="2.4"
           fill="none"
           strokeLinecap="round"
@@ -76,10 +76,12 @@ export function SideNav() {
                 >
                   <Icon
                     className={`h-6 w-6 transition-colors ${
-                      active ? "text-rose" : "text-rose/70 group-hover:text-rose"
+                      active
+                        ? "text-rose"
+                        : "text-[#b08a63] group-hover:text-rose"
                     }`}
                   />
-                  <span className="text-[0.82rem] font-semibold leading-tight text-rose-ink">
+                  <span className="text-[0.82rem] font-medium leading-tight text-cocoa-soft">
                     {label}
                   </span>
                 </Link>

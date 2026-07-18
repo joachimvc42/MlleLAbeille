@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/I18nProvider";
 import {
-  BeeMiniIcon,
+  BookIcon,
   CloseIcon,
   FlowerIcon,
   GiftIcon,
@@ -35,7 +35,7 @@ export function MobileNav() {
     { href: `/${locale}/illustrations`, label: dict.nav.illustrations, icon: SearchIcon },
     { href: `/${locale}/collections`, label: dict.nav.collections, icon: FlowerIcon },
     { href: `/${locale}/celebrations`, label: dict.nav.celebrations, icon: GiftIcon },
-    { href: `/${locale}/mon-histoire`, label: dict.nav.story, icon: BeeMiniIcon },
+    { href: `/${locale}/mon-histoire`, label: dict.nav.story, icon: BookIcon },
     { href: `/${locale}/favoris`, label: dict.nav.favorites, icon: HeartIcon },
     { href: `/${locale}/compte`, label: dict.nav.account, icon: UserIcon },
   ];
