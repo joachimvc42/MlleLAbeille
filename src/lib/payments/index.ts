@@ -71,6 +71,7 @@ export async function createCheckout(
         },
       },
     })),
+    client_reference_id: input.orderRef,
     metadata: { order_ref: input.orderRef },
     success_url: input.successUrl,
     cancel_url: input.cancelUrl,

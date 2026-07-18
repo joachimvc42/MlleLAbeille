@@ -40,8 +40,12 @@ Comment les trouver : `GET /v1/catalog/blueprints.json`, puis
 - Les lignes **non mappées** restent en traitement manuel — rien n'est bloqué.
 - Webhooks retour (expédition/livraison) : Printify → *Settings → Webhooks* →
   `https://<domaine>/api/webhooks/printify` pour `order:shipment:created` et
-  `order:shipment:delivered` (+ `PRINTIFY_WEBHOOK_SECRET` optionnel).
-  Les commandes passent alors `shipped` puis `delivered`.
+  `order:shipment:delivered`. Si le webhook est créé avec un secret,
+  renseigner le même dans `PRINTIFY_WEBHOOK_SECRET` : la signature
+  `X-Pfy-Signature` (`sha256=<HMAC-SHA256 du corps>`) est alors vérifiée.
+  Les commandes passent alors `shipped` puis `delivered` (correspondance par
+  `external_id` = réf `MLB-…`, sinon par l'id de commande Printify stocké
+  dans `fulfillment_reference`).
 
 ## 4. Personnalisation
 
