@@ -85,7 +85,7 @@ export default async function CelebrationPage({
 
       <div className="mx-auto max-w-[1300px] px-6 pb-20 sm:px-10 lg:pl-[230px]">
         {illustrations.length === 0 ? (
-          <p className="rounded-3xl bg-ivory/70 p-10 text-center">
+          <p className="paper-panel rounded-3xl p-10 text-center">
             {dict.catalogue.empty}
           </p>
         ) : (

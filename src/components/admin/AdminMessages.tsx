@@ -52,7 +52,7 @@ export function AdminMessages() {
   }
   if (rows.length === 0) {
     return (
-      <p className="rounded-2xl bg-ivory/70 p-8 text-center text-sm">
+      <p className="paper-panel rounded-2xl p-8 text-center text-sm">
         {dict.admin.noMessages}
       </p>
     );

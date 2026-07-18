@@ -97,7 +97,7 @@ export function AccountView() {
 
   if (!user) {
     return (
-      <div className="mt-10 rounded-[2rem] bg-ivory/70 p-12 text-center">
+      <div className="mt-10 paper-panel rounded-[2rem] p-12 text-center">
         <p className="text-lg">{dict.auth.signInTitle}</p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <Link
@@ -267,7 +267,7 @@ export function AccountView() {
               {addresses.map((address) => (
                 <li
                   key={address.id}
-                  className="rounded-2xl bg-ivory/80 p-4 text-sm shadow-sm"
+                  className="paper-panel rounded-2xl p-4 text-sm"
                 >
                   {address.label && (
                     <p className="font-semibold text-rose">{address.label}</p>

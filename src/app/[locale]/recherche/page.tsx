@@ -77,7 +77,7 @@ export default async function SearchPage({
       {results && (
         <div className="mt-14 space-y-14">
           {!hasResults && (
-            <p className="rounded-3xl bg-ivory/70 p-10 text-center">
+            <p className="paper-panel rounded-3xl p-10 text-center">
               {format(dict.search.noResults, { query: q })}
             </p>
           )}

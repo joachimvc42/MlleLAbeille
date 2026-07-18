@@ -17,7 +17,7 @@ export function CartView() {
 
   if (items.length === 0) {
     return (
-      <div className="mt-10 rounded-[2rem] bg-ivory/70 p-12 text-center">
+      <div className="mt-10 paper-panel rounded-[2rem] p-12 text-center">
         <p className="text-lg">{dict.cart.empty}</p>
         <Link
           href={`/${locale}/illustrations`}
@@ -109,7 +109,7 @@ export function CartView() {
         ))}
       </ul>
 
-      <div className="ml-auto max-w-sm space-y-3 rounded-[1.8rem] bg-ivory/80 p-6 shadow-plush">
+      <div className="ml-auto max-w-sm space-y-3 paper-panel rounded-[1.8rem] p-6">
         <div className="flex justify-between text-sm">
           <span>{dict.cart.subtotal}</span>
           <span className="font-semibold">

@@ -38,7 +38,7 @@ export function AdminNewsletter() {
   }
   if (rows.length === 0) {
     return (
-      <p className="rounded-2xl bg-ivory/70 p-8 text-center text-sm">
+      <p className="paper-panel rounded-2xl p-8 text-center text-sm">
         {dict.admin.noSubscribers}
       </p>
     );
@@ -53,7 +53,7 @@ export function AdminNewsletter() {
         {rows.map((row) => (
           <li
             key={row.id}
-            className="flex items-center justify-between gap-3 rounded-2xl bg-ivory/80 px-4 py-3 text-sm shadow-sm"
+            className="flex items-center justify-between gap-3 paper-panel rounded-2xl px-4 py-3 text-sm"
           >
             <span className="truncate font-semibold">{row.email}</span>
             <span className="shrink-0 text-xs text-rose-ink/60">

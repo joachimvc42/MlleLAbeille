@@ -165,108 +165,41 @@ html {
 body {
   font-family: var(--font-sans);
   color: var(--color-rose-ink);
-  background-color: #fbf5e9;
+  /* Watercolour paper: a slightly deeper cream than the token, mottled by
+     broad warm blotches and held in by a faint vignette, so no screen area
+     ever reads as a flat digital fill. */
+  background-color: #f8efdd;
   background-image:
-    radial-gradient(circle at 12% 15%, rgba(227, 179, 81, 0.1), transparent 30%),
-    radial-gradient(circle at 85% 18%, rgba(207, 217, 197, 0.18), transparent 34%),
-    radial-gradient(circle at 18% 80%, rgba(246, 231, 223, 0.24), transparent 32%);
+    radial-gradient(ellipse 60% 42% at 12% 12%, rgba(227, 179, 81, 0.16), transparent 70%),
+    radial-gradient(ellipse 55% 40% at 88% 16%, rgba(207, 217, 197, 0.2), transparent 70%),
+    radial-gradient(ellipse 50% 45% at 78% 85%, rgba(217, 231, 239, 0.22), transparent 70%),
+    radial-gradient(ellipse 55% 42% at 15% 82%, rgba(236, 207, 203, 0.24), transparent 70%),
+    radial-gradient(ellipse 45% 35% at 50% 45%, rgba(255, 252, 244, 0.5), transparent 75%),
+    radial-gradient(ellipse 120% 100% at 50% 50%, transparent 62%, rgba(180, 137, 96, 0.09) 100%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
 
-.text-cocoa { color: var(--color-cocoa); }
-.text-cocoa-soft { color: var(--color-cocoa-soft); }
-.text-olive { color: var(--color-olive); }
-
-.home-hero {
-  position: relative;
-  isolation: isolate;
-}
-.home-hero::after {
-  content: "";
-  position: absolute;
-  inset: 7% 0 5% 40%;
-  z-index: -1;
-  background: radial-gradient(ellipse, rgba(255, 250, 238, 0.95), rgba(244, 226, 194, 0.25) 56%, transparent 73%);
-}
-.botanical-divider {
-  width: 10rem;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(196, 144, 72, .7), transparent);
-  position: relative;
-}
-.botanical-divider::after {
-  content: "♥";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  padding: 0 .65rem;
-  transform: translate(-50%, -52%);
-  color: #c99770;
-  background: #fbf5e9;
-  font-size: .8rem;
-}
-.btn-sage {
-  color: #fffaf0;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #92996a, #7d8457);
-  box-shadow: 0 12px 28px rgba(93, 99, 58, .24);
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-.btn-sage:hover { transform: translateY(-2px); box-shadow: 0 15px 32px rgba(93, 99, 58, .3); }
-
-.hero-world::before {
-  content: "";
-  position: absolute;
-  inset: 4% -7% 2% 0;
-  border-radius: 46% 54% 48% 52%;
-  background: rgba(255, 250, 239, .48);
-  filter: blur(2px);
-}
-.hero-ground { position: absolute; z-index: 1; left: 1%; right: 0; bottom: 36px; height: 70px; border-radius: 50%; background: #ede2ca; box-shadow: inset 0 8px 18px rgba(143,105,64,.08), 0 20px 40px rgba(121,85,51,.11); }
-.hero-cushion { position: absolute; z-index: 2; left: 15%; bottom: 75px; width: 52%; height: 40%; border-radius: 42% 50% 45% 48%; transform: rotate(-3deg); background: linear-gradient(145deg,#d8dfc9,#bfc9ac); box-shadow: 0 20px 36px rgba(101,86,57,.15), inset 0 0 0 8px rgba(255,255,255,.18); }
-.hero-cushion::after { content:""; position:absolute; inset:10px; border:1px dashed rgba(255,255,255,.48); border-radius:inherit; }
-.hero-throw { position:absolute; z-index:1; right:3%; bottom:46px; width:42%; height:34%; border-radius:50%; transform:rotate(9deg); background:repeating-linear-gradient(90deg,#eee1c9 0 7px,#f6ead5 7px 13px); box-shadow:0 16px 30px rgba(91,69,44,.12); }
-.hero-cup { position:absolute; z-index:12; right:21%; bottom:69px; width:94px; height:83px; display:grid; place-items:center; border-radius:18px 18px 28px 28px; color:#c68775; font-size:1.6rem; background:linear-gradient(145deg,#fffaf0,#e8d9bd); box-shadow:0 12px 25px rgba(94,68,43,.14); }
-.hero-cup::after { content:""; position:absolute; right:-27px; top:15px; width:38px; height:42px; border:9px solid #e8d9bd; border-left:0; border-radius:0 28px 28px 0; }
-.hero-honey { position:absolute; z-index:11; right:0; bottom:57px; width:104px; height:111px; display:grid; place-items:center; border-radius:20px 20px 30px 30px; text-align:center; color:#76512c; background:linear-gradient(#f1ce70,#d99f31); box-shadow:0 13px 28px rgba(119,77,29,.18); }
-.hero-honey::before { content:""; position:absolute; left:8px; right:8px; top:-10px; height:22px; border-radius:10px; background:#efe1c9; }
-.hero-honey span { padding:7px 10px; border-radius:6px; background:rgba(255,248,224,.75); font-family:var(--font-display); line-height:.9; }
-.hero-honey small { font-size:.58rem; }
-.hero-cloud { position:absolute; height:34px; border-radius:999px; background:rgba(255,255,255,.44); filter:blur(.5px); }
-.hero-cloud-one { top:17%; left:3%; width:130px; }
-.hero-cloud-two { top:8%; right:14%; width:90px; }
-.hero-bouquet { position:absolute; z-index:4; right:3%; bottom:153px; width:150px; height:220px; }
-.stem { position:absolute; bottom:0; width:2px; border-radius:9px; background:#96a078; transform-origin:bottom; }
-.stem-one { left:64px; height:168px; transform:rotate(-11deg); }
-.stem-two { left:78px; height:198px; transform:rotate(11deg); }
-.leaf { position:absolute; width:34px; height:14px; border-radius:100% 0 100% 0; background:#aab58b; }
-.leaf-one { left:44px; bottom:64px; transform:rotate(22deg); }
-.leaf-two { left:82px; bottom:98px; transform:scaleX(-1) rotate(18deg); }
-.flower { position:absolute; z-index:2; width:45px; height:45px; border:12px dotted #f5eee0; border-radius:50%; background:#d7a44c; box-shadow:0 5px 10px rgba(110,75,36,.08); }
-.flower-large { left:31px; top:26px; width:58px; height:58px; border-width:16px; }
-.flower-small { right:3px; top:82px; transform:scale(.72); border-color:#e6b8a5; }
-.flower-honey { left:7px; top:108px; transform:scale(.55); border-color:#e7b656; }
-
-.seasonal-card { position:relative; color:inherit; background:linear-gradient(130deg,#f2ead8,#fffaf0 46%,#f5ead6); border:1px solid rgba(155,110,70,.12); box-shadow:0 24px 60px rgba(113,82,53,.11); transition:transform .35s ease, box-shadow .35s ease; }
-.seasonal-card::after { content:""; position:absolute; inset:9px; pointer-events:none; border:1px dashed rgba(172,130,76,.22); border-radius:2.25rem; }
-.seasonal-card:hover { transform:translateY(-4px); box-shadow:0 30px 70px rgba(113,82,53,.15); }
-
-@media (max-width: 640px) {
-  .hero-bouquet { right:-2%; transform:scale(.75); transform-origin:bottom right; }
-  .hero-honey { right:1%; transform:scale(.8); transform-origin:bottom right; }
-  .hero-cup { right:23%; transform:scale(.82); transform-origin:bottom right; }
-}
-
-/* Grain of textured paper, breathed over the whole page. */
+/* Grain of textured paper, breathed over the whole page — two scales of
+   tooth (fine + coarse) like cold-pressed watercolour stock. */
 .paper-grain::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 50;
   pointer-events: none;
-  opacity: 0.028;
+  opacity: 0.045;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.paper-grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.18' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
 }
 
 /* ---------------------------------------------------------------------------
@@ -330,6 +263,68 @@ h3,
 --------------------------------------------------------------------------- */
 @layer components {
 
+/* The hero room: a pool of morning light behind the still life, so the
+   scene sits in a sunbeam rather than floating on the page. */
+.home-hero {
+  position: relative;
+  isolation: isolate;
+}
+.home-hero::after {
+  content: "";
+  position: absolute;
+  inset: 7% 0 5% 40%;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 250, 238, 0.95),
+    rgba(244, 226, 194, 0.25) 56%,
+    transparent 73%
+  );
+}
+
+/* A thin gilded thread with a heart at its centre, under the hero text. */
+.botanical-divider {
+  width: 10rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(196, 144, 72, 0.7), transparent);
+  position: relative;
+}
+.botanical-divider::after {
+  content: "♥";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 0 0.65rem;
+  transform: translate(-50%, -52%);
+  color: #c99770;
+  background: #f8efdd;
+  font-size: 0.8rem;
+}
+
+/* Seasonal collection banner: warm paper with a dashed keepsake border. */
+.seasonal-card {
+  position: relative;
+  color: inherit;
+  background: linear-gradient(130deg, #f2ead8, #fffaf0 46%, #f5ead6);
+  border: 1px solid rgba(155, 110, 70, 0.12);
+  box-shadow: 0 24px 60px rgba(113, 82, 53, 0.11);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+.seasonal-card::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  pointer-events: none;
+  border: 1px dashed rgba(172, 130, 76, 0.22);
+  border-radius: 2.25rem;
+}
+.seasonal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 70px rgba(113, 82, 53, 0.15);
+}
+
 /* A woven, tactile surface — a placemat, not a white card. */
 .stitched {
   position: relative;
@@ -355,6 +350,40 @@ h3,
 .weave-surface {
   background-image: var(--weave);
   background-repeat: repeat;
+}
+
+/* Soft suede, for the hanging bookmark navigation: napped grain over a
+   warm chamois gradient, with a stitched hem like the reference tag. */
+.suede {
+  position: relative;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.62 0 0 0 0 0.47 0 0 0 0 0.33 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E"),
+    linear-gradient(168deg, #fbf3e2 0%, #f3e6cb 55%, #ecdcba 100%);
+  border: 1px solid rgba(157, 95, 89, 0.16);
+  box-shadow:
+    0 22px 45px rgba(125, 93, 72, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+.suede::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1.5px dashed rgba(178, 110, 104, 0.32);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* A sheet of warm paper for informational panels (empty states, summaries)
+   — replaces every last translucent-white slab. */
+.paper-panel {
+  background-image:
+    var(--weave),
+    linear-gradient(160deg, #fdf7ea 0%, #f4e8d2 100%);
+  background-repeat: repeat, no-repeat;
+  border: 1px solid rgba(157, 95, 89, 0.13);
+  box-shadow:
+    0 14px 36px rgba(125, 93, 72, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 /* Ceramic-like card for illustrations: a rimmed tile with a glaze catch-light. */
@@ -434,6 +463,19 @@ h3,
 .btn-ghost:hover {
   background: rgba(255, 255, 255, 0.65);
   border-color: var(--color-rose);
+}
+.btn-sage {
+  color: #fffaf0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #92996a, #7d8457);
+  box-shadow: 0 12px 28px rgba(93, 99, 58, 0.24);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.btn-sage:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 32px rgba(93, 99, 58, 0.3);
 }
 
 /* Tiny heart list markers for editorial lists. */
