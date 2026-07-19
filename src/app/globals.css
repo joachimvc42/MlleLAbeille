@@ -312,27 +312,6 @@ h3,
   pointer-events: none;
 }
 
-/* Soft suede, for the hanging bookmark navigation: napped grain over a
-   warm chamois gradient, with a stitched hem like the reference tag. */
-.suede {
-  position: relative;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.62 0 0 0 0 0.47 0 0 0 0 0.33 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E"),
-    linear-gradient(168deg, #fdf8ec 0%, #f8efdb 55%, #f1e5cb 100%);
-  border: 1px solid rgba(176, 138, 99, 0.28);
-  box-shadow:
-    0 22px 45px rgba(125, 93, 72, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-}
-.suede::before {
-  content: "";
-  position: absolute;
-  inset: 8px;
-  border: 1.5px dashed rgba(196, 154, 110, 0.5);
-  border-radius: inherit;
-  pointer-events: none;
-}
-
 /* A sheet of warm paper for informational panels (empty states, summaries)
    — replaces every last translucent-white slab. */
 .paper-panel {

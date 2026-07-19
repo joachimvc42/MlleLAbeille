@@ -15,7 +15,6 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { HeroScene } from "@/components/home/HeroScene";
 import { ArrowRightIcon } from "@/components/Icons";
 import { ScallopDivider } from "@/components/ScallopDivider";
-import { FloralSprig } from "@/components/decor/FloralSprig";
 import { HeartDashes } from "@/components/decor/HeartDashes";
 import { OrganizationJsonLd, WebsiteJsonLd } from "@/lib/seo/jsonld";
 
@@ -127,7 +126,13 @@ export default async function HomePage({
             ))}
           </div>
           <div className="mt-12 flex items-center justify-center gap-4">
-            <FloralSprig className="hidden h-6 w-14 sm:block" />
+            <Image
+              src="/brand/sprig-left.webp"
+              alt=""
+              width={72}
+              height={52}
+              className="hidden h-8 w-auto sm:block"
+            />
             <Link
               href={`/${locale}/illustrations`}
               className="font-display inline-flex items-center gap-2.5 text-lg font-semibold text-cocoa underline-offset-8 transition-colors hover:text-rose-deep hover:underline"
@@ -135,7 +140,13 @@ export default async function HomePage({
               {dict.common.discoverAll}
               <ArrowRightIcon className="h-4.5 w-4.5" />
             </Link>
-            <FloralSprig flip className="hidden h-6 w-14 sm:block" />
+            <Image
+              src="/brand/sprig-right.webp"
+              alt=""
+              width={60}
+              height={52}
+              className="hidden h-8 w-auto sm:block"
+            />
           </div>
         </section>
       </div>
