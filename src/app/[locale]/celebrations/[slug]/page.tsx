@@ -11,6 +11,7 @@ import {
 } from "@/lib/catalogue";
 import { IllustrationCard } from "@/components/shop/IllustrationCard";
 import { BreadcrumbJsonLd } from "@/lib/seo/jsonld";
+import { CelebrationBee } from "@/components/decor/CelebrationBees";
 
 export async function generateStaticParams() {
   const celebrations = await getCelebrations();
@@ -72,8 +73,15 @@ export default async function CelebrationPage({
           background: `linear-gradient(180deg, ${celebration.tint}, transparent)`,
         }}
       >
-        <span aria-hidden="true" className="text-4xl">
-          {celebration.icon}
+        <span
+          aria-hidden="true"
+          className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-ivory/90 shadow-sm"
+        >
+          <CelebrationBee
+            slug={celebration.slug}
+            fallback={celebration.icon}
+            className="h-14 w-14"
+          />
         </span>
         <h1 className="mt-3 text-4xl font-semibold text-rose sm:text-5xl">
           {celebration.name[locale]}

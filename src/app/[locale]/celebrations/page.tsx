@@ -6,6 +6,7 @@ import { getDictionary } from "@/lib/i18n";
 import { isLocale, type Locale } from "@/lib/i18n/config";
 import { getCelebrations } from "@/lib/catalogue";
 import { SectionHeading } from "@/components/SectionHeading";
+import { CelebrationBee } from "@/components/decor/CelebrationBees";
 
 export async function generateMetadata({
   params,
@@ -51,9 +52,13 @@ export default async function CelebrationsPage({
             >
               <span
                 aria-hidden="true"
-                className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-ivory/90 text-3xl shadow-sm"
+                className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-ivory/90 shadow-sm"
               >
-                {celebration.icon}
+                <CelebrationBee
+                  slug={celebration.slug}
+                  fallback={celebration.icon}
+                  className="h-12 w-12"
+                />
               </span>
               <span className="font-display relative z-10 mt-4 text-xl font-semibold text-rose">
                 {celebration.name[locale]}

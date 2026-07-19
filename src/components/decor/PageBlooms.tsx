@@ -15,10 +15,10 @@ export function PageBlooms() {
       <Image
         src="/brand/flowers-corner-right.webp"
         alt=""
-        width={148}
-        height={344}
-        sizes="132px"
-        className="absolute bottom-0 right-2 h-auto w-[132px] opacity-90"
+        width={144}
+        height={300}
+        sizes="130px"
+        className="absolute bottom-0 right-2 h-auto w-[130px] opacity-90"
       />
     </div>
   );

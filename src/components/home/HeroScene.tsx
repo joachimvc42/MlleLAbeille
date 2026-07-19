@@ -21,20 +21,20 @@ export function HeroScene({ beeAlt }: { beeAlt: string }) {
         className="h-auto w-full"
       />
 
-      {/* Fine white steam over the tea, undulating along its whole length. */}
+      {/* Fine warm steam over the tea, undulating along its whole length. */}
       <svg
         aria-hidden="true"
         viewBox="0 0 100 230"
-        className="steam-svg pointer-events-none absolute left-[11%] top-[22%] h-[44%] w-[13%]"
+        className="steam-svg pointer-events-none absolute left-[11%] top-[35%] h-[31%] w-[13%]"
       >
         <defs>
           <filter id="steam-soften" x="-60%" y="-20%" width="220%" height="140%">
             <feGaussianBlur stdDeviation="1.5" />
           </filter>
           <linearGradient id="steam-white" x1="0" y1="1" x2="0" y2="0">
-            <stop offset="0" stopColor="#d8c8ab" stopOpacity="0.9" />
-            <stop offset="0.7" stopColor="#e0d3ba" stopOpacity="0.55" />
-            <stop offset="1" stopColor="#eee4d2" stopOpacity="0" />
+            <stop offset="0" stopColor="#e3d2ae" stopOpacity="0.9" />
+            <stop offset="0.7" stopColor="#ecdec0" stopOpacity="0.5" />
+            <stop offset="1" stopColor="#f4ead6" stopOpacity="0" />
           </linearGradient>
         </defs>
         <g

@@ -16,6 +16,7 @@ import { HeroScene } from "@/components/home/HeroScene";
 import { ArrowRightIcon } from "@/components/Icons";
 import { HoneyDivider } from "@/components/HoneyDivider";
 import { HeartDashes } from "@/components/decor/HeartDashes";
+import { CelebrationBee } from "@/components/decor/CelebrationBees";
 import { OrganizationJsonLd, WebsiteJsonLd } from "@/lib/seo/jsonld";
 
 export default async function HomePage({
@@ -224,9 +225,13 @@ export default async function HomePage({
                 >
                   <span
                     aria-hidden="true"
-                    className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ivory/90 text-xl shadow-sm"
+                    className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ivory/90 shadow-sm"
                   >
-                    {celebration.icon}
+                    <CelebrationBee
+                      slug={celebration.slug}
+                      fallback={celebration.icon}
+                      className="h-9 w-9"
+                    />
                   </span>
                   <span className="relative z-10">
                     <span className="font-display block text-lg font-semibold text-rose">
