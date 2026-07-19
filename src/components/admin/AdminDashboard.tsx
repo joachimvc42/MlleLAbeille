@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n/I18nProvider";
-import { getSupabaseBrowserClient } from "@/lib/supabase/client";
+import { adminDb } from "@/lib/adminFetch";
 
 interface Stats {
   published: number;
@@ -15,46 +15,56 @@ interface Stats {
 
 export function AdminDashboard() {
   const { dict } = useI18n();
-  const supabase = getSupabaseBrowserClient();
   const [stats, setStats] = useState<Stats | null>(null);
   const [error, setError] = useState(false);
+  const [noService, setNoService] = useState(false);
 
   useEffect(() => {
-    if (!supabase) return;
     let cancelled = false;
     (async () => {
-      const query = (t: string) =>
-        supabase.from(t).select("*", { count: "exact", head: true });
-      type Q = ReturnType<typeof query>;
+      const count = (
+        table: string,
+        filters?: { column: string; op: "eq" | "in"; value: unknown }[],
+      ) => adminDb({ table, action: "count", filters });
 
-      try {
-        const [published, drafts, orders, pending, subscribers, unread] =
-          await Promise.all([
-            query("illustrations").eq("status", "published") as Q,
-            query("illustrations").eq("status", "draft") as Q,
-            query("orders") as Q,
-            query("orders").in("status", ["pending", "paid"]) as Q,
-            query("newsletter_subscribers") as Q,
-            query("contact_messages").eq("handled", false) as Q,
-          ]);
-        if (cancelled) return;
-        setStats({
-          published: published.count ?? 0,
-          drafts: drafts.count ?? 0,
-          orders: orders.count ?? 0,
-          pendingOrders: pending.count ?? 0,
-          subscribers: subscribers.count ?? 0,
-          unreadMessages: unread.count ?? 0,
-        });
-      } catch {
-        if (!cancelled) setError(true);
+      const results = await Promise.all([
+        count("illustrations", [{ column: "status", op: "eq", value: "published" }]),
+        count("illustrations", [{ column: "status", op: "eq", value: "draft" }]),
+        count("orders"),
+        count("orders", [{ column: "status", op: "in", value: ["pending", "paid"] }]),
+        count("newsletter_subscribers"),
+        count("contact_messages", [{ column: "handled", op: "eq", value: false }]),
+      ]);
+      if (cancelled) return;
+      const failed = results.find((r) => !r.ok);
+      if (failed && !failed.ok) {
+        if (failed.error === "no-admin-client") setNoService(true);
+        else setError(true);
+        return;
       }
+      const [published, drafts, orders, pending, subscribers, unread] = results;
+      const n = (r: (typeof results)[number]) => (r.ok ? (r.count ?? 0) : 0);
+      setStats({
+        published: n(published),
+        drafts: n(drafts),
+        orders: n(orders),
+        pendingOrders: n(pending),
+        subscribers: n(subscribers),
+        unreadMessages: n(unread),
+      });
     })();
     return () => {
       cancelled = true;
     };
-  }, [supabase]);
+  }, []);
 
+  if (noService) {
+    return (
+      <p className="paper-panel rounded-2xl p-8 text-center text-sm leading-relaxed">
+        {dict.admin.needsService}
+      </p>
+    );
+  }
   if (error) {
     return <p className="text-sm text-rose-deep">{dict.admin.loadError}</p>;
   }

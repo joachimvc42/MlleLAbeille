@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n/I18nProvider";
-import { getSupabaseBrowserClient } from "@/lib/supabase/client";
+import { adminDb } from "@/lib/adminFetch";
 
 interface Row {
   id: string;
@@ -15,35 +15,48 @@ interface Row {
 
 export function AdminMessages() {
   const { locale, dict } = useI18n();
-  const supabase = getSupabaseBrowserClient();
   const [rows, setRows] = useState<Row[] | null>(null);
   const [error, setError] = useState(false);
+  const [noService, setNoService] = useState(false);
 
   useEffect(() => {
-    if (!supabase) return;
-    supabase
-      .from("contact_messages")
-      .select("id, name, email, message, handled, created_at")
-      .order("handled")
-      .order("created_at", { ascending: false })
-      .limit(200)
-      .then(({ data, error: err }) => {
-        if (err) setError(true);
-        else setRows((data as Row[]) ?? []);
-      });
-  }, [supabase]);
+    adminDb<Row>({
+      table: "contact_messages",
+      action: "select",
+      columns: ["id", "name", "email", "message", "handled", "created_at"],
+      order: [
+        { column: "handled" },
+        { column: "created_at", ascending: false },
+      ],
+      limit: 200,
+    }).then((res) => {
+      if (!res.ok) {
+        if (res.error === "no-admin-client") setNoService(true);
+        else setError(true);
+      } else setRows(res.rows ?? []);
+    });
+  }, []);
 
   async function markHandled(id: string) {
-    if (!supabase || !rows) return;
-    const { error: err } = await supabase
-      .from("contact_messages")
-      .update({ handled: true })
-      .eq("id", id);
-    if (!err) {
+    if (!rows) return;
+    const res = await adminDb({
+      table: "contact_messages",
+      action: "update",
+      id,
+      patch: { handled: true },
+    });
+    if (res.ok) {
       setRows(rows.map((r) => (r.id === id ? { ...r, handled: true } : r)));
     }
   }
 
+  if (noService) {
+    return (
+      <p className="paper-panel rounded-2xl p-8 text-center text-sm leading-relaxed">
+        {dict.admin.needsService}
+      </p>
+    );
+  }
   if (error) {
     return <p className="text-sm text-rose-deep">{dict.admin.loadError}</p>;
   }

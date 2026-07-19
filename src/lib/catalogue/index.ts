@@ -42,6 +42,13 @@ const SNAPSHOT_TTL_MS = 60_000;
 let cached: CatalogueSnapshot | null = null;
 let cachedAt = 0;
 
+/** Drops the in-memory snapshot so the next read refetches Supabase —
+ * called after admin catalogue mutations alongside revalidatePath. */
+export function bustCatalogueCache() {
+  cached = null;
+  cachedAt = 0;
+}
+
 export async function getSnapshot(): Promise<CatalogueSnapshot> {
   const now = Date.now();
   if (cached && now - cachedAt < SNAPSHOT_TTL_MS) return cached;

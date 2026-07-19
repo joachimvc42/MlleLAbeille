@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n/I18nProvider";
-import { getSupabaseBrowserClient } from "@/lib/supabase/client";
+import { adminDb } from "@/lib/adminFetch";
 
 interface Row {
   id: string;
@@ -17,38 +17,60 @@ interface Row {
 
 export function AdminIllustrations() {
   const { locale, dict } = useI18n();
-  const supabase = getSupabaseBrowserClient();
   const [rows, setRows] = useState<Row[] | null>(null);
   const [error, setError] = useState(false);
+  const [noService, setNoService] = useState(false);
   const [savingId, setSavingId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!supabase) return;
-    supabase
-      .from("illustrations")
-      .select("id, slug, title, status, featured, featured_order, is_placeholder")
-      .order("featured", { ascending: false })
-      .order("featured_order", { ascending: true, nullsFirst: false })
-      .order("slug")
-      .then(({ data, error: err }) => {
-        if (err) setError(true);
-        else setRows((data as Row[]) ?? []);
-      });
-  }, [supabase]);
+    adminDb<Row>({
+      table: "illustrations",
+      action: "select",
+      columns: [
+        "id",
+        "slug",
+        "title",
+        "status",
+        "featured",
+        "featured_order",
+        "is_placeholder",
+      ],
+      order: [
+        { column: "featured", ascending: false },
+        { column: "featured_order", ascending: true, nullsFirst: false },
+        { column: "slug" },
+      ],
+      limit: 500,
+    }).then((res) => {
+      if (!res.ok) {
+        if (res.error === "no-admin-client") setNoService(true);
+        else setError(true);
+      } else setRows(res.rows ?? []);
+    });
+  }, []);
 
   async function update(id: string, patch: Partial<Row>) {
-    if (!supabase || !rows) return;
+    if (!rows) return;
     setSavingId(id);
-    const { error: err } = await supabase
-      .from("illustrations")
-      .update(patch)
-      .eq("id", id);
-    if (!err) {
+    const res = await adminDb({
+      table: "illustrations",
+      action: "update",
+      id,
+      patch,
+    });
+    if (res.ok) {
       setRows(rows.map((r) => (r.id === id ? { ...r, ...patch } : r)));
     }
     setSavingId(null);
   }
 
+  if (noService) {
+    return (
+      <p className="paper-panel rounded-2xl p-8 text-center text-sm leading-relaxed">
+        {dict.admin.needsService}
+      </p>
+    );
+  }
   if (error) {
     return <p className="text-sm text-rose-deep">{dict.admin.loadError}</p>;
   }

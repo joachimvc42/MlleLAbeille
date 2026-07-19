@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n/I18nProvider";
-import { getSupabaseBrowserClient } from "@/lib/supabase/client";
+import { adminDb } from "@/lib/adminFetch";
 import { formatPrice } from "@/lib/catalogue/types";
 
 const STATUSES = [
@@ -28,39 +28,57 @@ interface Row {
 
 export function AdminOrders() {
   const { locale, dict } = useI18n();
-  const supabase = getSupabaseBrowserClient();
   const [rows, setRows] = useState<Row[] | null>(null);
   const [error, setError] = useState(false);
+  const [noService, setNoService] = useState(false);
   const [savingId, setSavingId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!supabase) return;
-    supabase
-      .from("orders")
-      .select(
-        "id, ref, email, status, total_cents, payment_provider, fulfillment_provider, created_at",
-      )
-      .order("created_at", { ascending: false })
-      .limit(200)
-      .then(({ data, error: err }) => {
-        if (err) setError(true);
-        else setRows((data as Row[]) ?? []);
-      });
-  }, [supabase]);
+    adminDb<Row>({
+      table: "orders",
+      action: "select",
+      columns: [
+        "id",
+        "ref",
+        "email",
+        "status",
+        "total_cents",
+        "payment_provider",
+        "fulfillment_provider",
+        "created_at",
+      ],
+      order: [{ column: "created_at", ascending: false }],
+      limit: 200,
+    }).then((res) => {
+      if (!res.ok) {
+        if (res.error === "no-admin-client") setNoService(true);
+        else setError(true);
+      } else setRows(res.rows ?? []);
+    });
+  }, []);
 
   async function setStatus(id: string, status: string) {
-    if (!supabase || !rows) return;
+    if (!rows) return;
     setSavingId(id);
-    const { error: err } = await supabase
-      .from("orders")
-      .update({ status })
-      .eq("id", id);
-    if (!err) {
+    const res = await adminDb({
+      table: "orders",
+      action: "update",
+      id,
+      patch: { status },
+    });
+    if (res.ok) {
       setRows(rows.map((r) => (r.id === id ? { ...r, status } : r)));
     }
     setSavingId(null);
   }
 
+  if (noService) {
+    return (
+      <p className="paper-panel rounded-2xl p-8 text-center text-sm leading-relaxed">
+        {dict.admin.needsService}
+      </p>
+    );
+  }
   if (error) {
     return <p className="text-sm text-rose-deep">{dict.admin.loadError}</p>;
   }

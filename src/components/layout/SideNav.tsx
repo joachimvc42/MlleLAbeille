@@ -17,6 +17,9 @@ export function SideNav() {
   const { locale, dict } = useI18n();
   const pathname = usePathname();
 
+  // The workshop needs the full width — the bookmark stays in the shop.
+  if (pathname.includes("/admin")) return null;
+
   const items = [
     {
       href: `/${locale}/collections`,
