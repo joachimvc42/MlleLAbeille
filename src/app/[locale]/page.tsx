@@ -230,7 +230,7 @@ export default async function HomePage({
                     <CelebrationBee
                       slug={celebration.slug}
                       fallback={celebration.icon}
-                      className="h-9 w-9"
+                      className="h-10 w-10"
                     />
                   </span>
                   <span className="relative z-10">

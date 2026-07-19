@@ -80,7 +80,7 @@ export default async function CelebrationPage({
           <CelebrationBee
             slug={celebration.slug}
             fallback={celebration.icon}
-            className="h-14 w-14"
+            className="h-16 w-16"
           />
         </span>
         <h1 className="mt-3 text-4xl font-semibold text-rose sm:text-5xl">

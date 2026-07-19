@@ -247,23 +247,12 @@ h3,
 --------------------------------------------------------------------------- */
 @layer components {
 
-/* The hero room: a pool of morning light behind the still life, so the
-   scene sits in a sunbeam rather than floating on the page. */
+/* The hero room. The still-life artwork is colour-matched to the page
+   cream and melts in with organic edges — no halo behind it, so nothing
+   ever betrays the picture's boundary. */
 .home-hero {
   position: relative;
   isolation: isolate;
-}
-.home-hero::after {
-  content: "";
-  position: absolute;
-  inset: 7% 0 5% 40%;
-  z-index: -1;
-  background: radial-gradient(
-    ellipse,
-    rgba(255, 250, 238, 0.95),
-    rgba(244, 226, 194, 0.25) 56%,
-    transparent 73%
-  );
 }
 
 /* Seasonal collection banner: warm paper with a dashed keepsake border. */
@@ -419,19 +408,19 @@ h3,
   background: rgba(255, 255, 255, 0.65);
   border-color: var(--color-rose);
 }
-/* The soft green of the cushion Mlle l'Abeille reads on. */
+/* The soft pastel green of the cushion Mlle l'Abeille reads on. */
 .btn-sage {
-  color: #fffaf0;
+  color: #4a5033;
   border-radius: 999px;
-  background: linear-gradient(135deg, #b3b184, #8f9062);
-  box-shadow: 0 12px 28px rgba(107, 108, 70, 0.24);
+  background: linear-gradient(135deg, #d3d5b4, #b4ba93);
+  box-shadow: 0 12px 28px rgba(122, 124, 86, 0.22);
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
 }
 .btn-sage:hover {
   transform: translateY(-2px);
-  box-shadow: 0 15px 32px rgba(107, 108, 70, 0.3);
+  box-shadow: 0 15px 32px rgba(122, 124, 86, 0.28);
 }
 
 /* Tiny heart list markers for editorial lists. */
