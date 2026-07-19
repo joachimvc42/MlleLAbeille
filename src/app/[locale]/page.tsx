@@ -14,7 +14,7 @@ import { WingFlutter } from "@/components/shop/WingFlutter";
 import { SectionHeading } from "@/components/SectionHeading";
 import { HeroScene } from "@/components/home/HeroScene";
 import { ArrowRightIcon } from "@/components/Icons";
-import { ScallopDivider } from "@/components/ScallopDivider";
+import { HoneyDivider } from "@/components/HoneyDivider";
 import { HeartDashes } from "@/components/decor/HeartDashes";
 import { OrganizationJsonLd, WebsiteJsonLd } from "@/lib/seo/jsonld";
 
@@ -104,7 +104,7 @@ export default async function HomePage({
       {/* --------------------------- Featured six -------------------------- */}
       {/* The pantry: a sunlit shelf where the illustrations are set out. */}
       <div className="room-honey relative">
-        <ScallopDivider color="#faf0d8" className="absolute -top-[25px] left-0" />
+        <HoneyDivider className="absolute inset-x-0 top-0" />
         <section
           aria-labelledby="featured-title"
           className="mx-auto max-w-[1300px] px-6 py-20 sm:px-10 lg:pl-[230px]"
@@ -154,7 +154,7 @@ export default async function HomePage({
       {/* ---------------------------- Collections --------------------------- */}
       {/* The sunroom: the illustrated worlds, shelved like glazed pottery. */}
       <div className="room-sage relative">
-        <ScallopDivider color="#e4ebdd" className="absolute -top-[25px] left-0" />
+        <HoneyDivider className="absolute inset-x-0 top-0" />
         <section
           aria-labelledby="collections-title"
           className="mx-auto max-w-[1300px] px-6 py-20 sm:px-10 lg:pl-[230px]"
@@ -204,7 +204,7 @@ export default async function HomePage({
       {/* ---------------------------- Célébrations --------------------------- */}
       {/* The nursery corner: soft light, gift ribbons, quiet celebration. */}
       <div className="room-sky relative">
-        <ScallopDivider color="#eaf2f7" className="absolute -top-[25px] left-0" />
+        <HoneyDivider className="absolute inset-x-0 top-0" />
         <section
           aria-labelledby="celebrations-title"
           className="mx-auto max-w-[1300px] px-6 py-20 sm:px-10 lg:pl-[230px]"
@@ -246,7 +246,7 @@ export default async function HomePage({
       {/* ----------------------------- Mon histoire -------------------------- */}
       {/* The keepsake nook: warm, intimate, close to the wall again. */}
       <div className="room-rose relative">
-        <ScallopDivider color="#f7e9e6" className="absolute -top-[25px] left-0" />
+        <HoneyDivider className="absolute inset-x-0 top-0" />
         <section
           aria-labelledby="story-title"
           className="mx-auto max-w-[1300px] px-6 py-20 sm:px-10 lg:pl-[230px]"

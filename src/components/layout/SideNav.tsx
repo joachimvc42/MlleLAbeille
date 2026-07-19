@@ -48,7 +48,7 @@ export function SideNav() {
           height={740}
           priority
           sizes="150px"
-          className="h-auto w-full"
+          className="h-auto w-full [filter:drop-shadow(0_14px_24px_rgba(125,93,72,0.28))]"
         />
         <ul className="absolute inset-x-3 top-[172px] flex h-[268px] flex-col justify-between">
           {items.map(({ href, label, icon: Icon }) => {

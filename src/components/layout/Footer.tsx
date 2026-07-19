@@ -3,7 +3,7 @@ import type { Dictionary } from "@/lib/i18n/dictionaries/fr";
 import type { Locale } from "@/lib/i18n/config";
 import { BeeLogo } from "@/components/BeeLogo";
 import { NewsletterForm } from "@/components/NewsletterForm";
-import { ScallopDivider } from "@/components/ScallopDivider";
+import { HoneyDivider } from "@/components/HoneyDivider";
 
 export function Footer({
   locale,
@@ -35,7 +35,7 @@ export function Footer({
           "linear-gradient(180deg, rgba(246,237,218,.4), rgba(232,213,177,.55))",
       }}
     >
-      <ScallopDivider color="#f6edda" className="absolute -top-[25px] left-0" />
+      <HoneyDivider className="absolute inset-x-0 top-0" />
 
       <div className="relative z-10 mx-auto grid max-w-[1200px] gap-10 px-6 py-14 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr_1.6fr]">
         <div>

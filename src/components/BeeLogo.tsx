@@ -1,40 +1,20 @@
+import Image from "next/image";
+
 /**
- * Minimal bee mark used in the top bar and favicon. Drawn by hand so the
- * logo stays crisp at any size without shipping an image.
+ * The shop's bee mark: the real watercolour bee from the boutique's
+ * artwork, cut out on transparency — same painted style as every other
+ * bee the visitor meets.
  */
 export function BeeLogo({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 48 48"
-      fill="none"
+    <Image
+      src="/brand/logo-bee.webp"
+      alt=""
       aria-hidden="true"
+      width={512}
+      height={512}
+      sizes="48px"
       className={className}
-    >
-      {/* wings */}
-      <ellipse cx="15" cy="17" rx="9" ry="6.5" fill="#D9E7EF" opacity="0.9" transform="rotate(-24 15 17)" />
-      <ellipse cx="33" cy="17" rx="9" ry="6.5" fill="#D9E7EF" opacity="0.9" transform="rotate(24 33 17)" />
-      {/* antennae */}
-      <path d="M20 12c-2-3-5-4.5-7.5-4" stroke="#B26E68" strokeWidth="1.8" strokeLinecap="round" />
-      <path d="M28 12c2-3 5-4.5 7.5-4" stroke="#B26E68" strokeWidth="1.8" strokeLinecap="round" />
-      <circle cx="11.7" cy="7.6" r="2" fill="#B26E68" />
-      <circle cx="36.3" cy="7.6" r="2" fill="#B26E68" />
-      {/* body */}
-      <ellipse cx="24" cy="27" rx="14" ry="16" fill="#F2D488" />
-      <path
-        d="M10.6 30.5a14 16 0 0 0 26.8 0c-4-1.6-9-2.5-13.4-2.5s-9.4.9-13.4 2.5Z"
-        fill="#C99A3C"
-        opacity="0.85"
-      />
-      <path
-        d="M12.6 38.3a14 16 0 0 0 22.8 0c-3.4-1.3-7.5-2-11.4-2s-8 .7-11.4 2Z"
-        fill="#F2D488"
-      />
-      {/* face */}
-      <circle cx="19" cy="22" r="1.6" fill="#6B4A32" />
-      <circle cx="29" cy="22" r="1.6" fill="#6B4A32" />
-      <path d="M21.5 26c.8.9 1.7 1.3 2.5 1.3s1.7-.4 2.5-1.3" stroke="#6B4A32" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-      <circle cx="15.5" cy="25.5" r="2.2" fill="#EFB7AF" opacity="0.8" />
-      <circle cx="32.5" cy="25.5" r="2.2" fill="#EFB7AF" opacity="0.8" />
-    </svg>
+    />
   );
 }

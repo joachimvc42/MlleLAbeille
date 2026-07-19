@@ -32,9 +32,9 @@ export function HeroScene({ beeAlt }: { beeAlt: string }) {
             <feGaussianBlur stdDeviation="1.5" />
           </filter>
           <linearGradient id="steam-white" x1="0" y1="1" x2="0" y2="0">
-            <stop offset="0" stopColor="#fffdf7" stopOpacity="0.85" />
-            <stop offset="0.7" stopColor="#fffef9" stopOpacity="0.45" />
-            <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
+            <stop offset="0" stopColor="#d8c8ab" stopOpacity="0.9" />
+            <stop offset="0.7" stopColor="#e0d3ba" stopOpacity="0.55" />
+            <stop offset="1" stopColor="#eee4d2" stopOpacity="0" />
           </linearGradient>
         </defs>
         <g
