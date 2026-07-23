@@ -85,7 +85,7 @@ export default async function HomePage({
                 ? "Jardiner, lire, flâner au soleil… une collection tendre déclinée au féminin comme au masculin."
                 : "Gardening, reading, lingering in the sun… a gentle collection with feminine and masculine characters."}
             </span>
-            <span className="mt-7 inline-flex items-center gap-2 font-semibold text-olive">
+            <span className="mt-7 inline-flex items-center gap-2 font-semibold text-honey-deep">
               {locale === "fr" ? "Découvrir la collection" : "Discover the collection"}
               <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </span>
@@ -190,7 +190,15 @@ export default async function HomePage({
                     sizes="112px"
                   />
                 </span>
-                <span className="font-display relative z-10 mt-5 text-xl font-semibold text-rose">
+                <span
+                  className="font-display relative z-10 mt-5 text-xl font-semibold"
+                  style={{
+                    color:
+                      collection.slug === "la-vie-en-vert"
+                        ? "#739149"
+                        : collection.accent,
+                  }}
+                >
                   {collection.name}
                 </span>
                 <span className="relative z-10 mt-2 text-sm leading-relaxed text-rose-ink/90">
@@ -275,6 +283,10 @@ export default async function HomePage({
               <Link
                 href={`/${locale}/mon-histoire`}
                 className="btn-ghost mt-6 inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold"
+                style={{
+                  color: "var(--color-rose)",
+                  borderColor: "color-mix(in srgb, var(--color-rose) 45%, transparent)",
+                }}
               >
                 {dict.home.storyLink}
                 <ArrowRightIcon className="h-4 w-4" />

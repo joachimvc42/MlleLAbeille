@@ -6,11 +6,11 @@
 --------------------------------------------------------------------------- */
 @theme {
   /* Brand */
-  --color-rose: #c98781;
-  --color-rose-deep: #b26e68;
-  --color-rose-ink: #9d5f59;
-  --color-rose-soft: #eccfcb;
-  --color-rose-whisper: #f7e9e6;
+  --color-rose: #d77a63;
+  --color-rose-deep: #d77a63;
+  --color-rose-ink: #88664e;
+  --color-rose-soft: #f1c4b9;
+  --color-rose-whisper: #faece8;
 
   --color-honey: #e3b351;
   --color-honey-deep: #c99a3c;
@@ -27,8 +27,8 @@
   --color-sky-soft: #eaf2f7;
   --color-lavender: #e4dded;
   --color-blush: #f6e7df;
-  --color-cocoa: #6f4b30;
-  --color-cocoa-soft: #7b5f46;
+  --color-cocoa: #805d43;
+  --color-cocoa-soft: #88664e;
   --color-olive: #7f8754;
 
   /* Type */

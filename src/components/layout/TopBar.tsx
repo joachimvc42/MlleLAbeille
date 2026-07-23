@@ -30,12 +30,12 @@ export function TopBar() {
   }
 
   const action =
-    "relative flex h-10 items-center justify-center gap-1.5 rounded-full px-2.5 text-rose-ink transition-colors hover:bg-rose-whisper";
+    "relative flex h-10 items-center justify-center gap-1.5 rounded-full px-2.5 text-[#88664E] transition-colors hover:bg-[#D77A63]/10 hover:text-[#D77A63]";
   const actionLabel =
     "hidden whitespace-nowrap text-[0.85rem] font-semibold xl:block";
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-rose/10 bg-cream/85 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-40 border-b border-[#D77A63]/10 bg-cream/85 backdrop-blur-md">
       <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-3 px-4 sm:px-8">
         <Link
           href={`/${locale}`}
@@ -44,13 +44,13 @@ export function TopBar() {
         >
           <BeeLogo className="h-11 w-11 transition-transform duration-300 group-hover:-rotate-6" />
           <span className="leading-tight">
-            <span className="font-display block text-xl font-semibold text-rose">
+            <span className="font-display block text-xl font-semibold text-[#D77A63]">
               MlleLAbeille
               <span aria-hidden="true" className="ml-0.5 align-super text-[0.6rem]">
                 ♥
               </span>
             </span>
-            <span className="block text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-rose/70">
+            <span className="block text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-[#D77A63]/70">
               {dict.common.tagline}
             </span>
           </span>
@@ -71,12 +71,12 @@ export function TopBar() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={dict.nav.searchPlaceholder}
-            className="h-11 w-full rounded-full border border-rose/25 bg-ivory/80 pl-5 pr-11 text-sm placeholder:text-rose-ink/45 focus:border-rose"
+            className="h-11 w-full rounded-full border border-[#D77A63]/25 bg-ivory/80 pl-5 pr-11 text-sm text-[#88664E] placeholder:text-[#88664E]/45 focus:border-[#D77A63]"
           />
           <button
             type="submit"
             aria-label={dict.nav.searchLabel}
-            className="absolute right-1.5 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-rose transition-colors hover:bg-rose-whisper"
+            className="absolute right-1.5 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-[#88664E] transition-colors hover:bg-[#D77A63]/10 hover:text-[#D77A63]"
           >
             <SearchIcon className="h-4.5 w-4.5" />
           </button>

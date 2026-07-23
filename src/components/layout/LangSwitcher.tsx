@@ -33,8 +33,8 @@ export function LangSwitcher() {
           aria-pressed={l === locale}
           className={`rounded-full px-2 py-1 text-xs font-semibold uppercase tracking-wide transition-colors ${
             l === locale
-              ? "bg-rose text-ivory"
-              : "text-rose-ink hover:bg-rose-whisper"
+              ? "bg-[#D77A63] text-ivory"
+              : "text-[#88664E] hover:bg-[#D77A63]/10 hover:text-[#D77A63]"
           }`}
         >
           {l}
