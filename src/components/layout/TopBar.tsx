@@ -30,7 +30,7 @@ export function TopBar() {
   }
 
   const action =
-    "relative flex h-10 items-center justify-center gap-1.5 rounded-full px-2.5 text-[#88664E] transition-colors hover:bg-[#D77A63]/10 hover:text-[#D77A63]";
+    "relative flex h-10 items-center justify-center gap-1.5 rounded-full px-2.5 text-[#8B4513] transition-colors hover:bg-[#D77A63]/10 hover:text-[#D77A63]";
   const actionLabel =
     "hidden whitespace-nowrap text-[0.85rem] font-semibold xl:block";
 
@@ -71,12 +71,12 @@ export function TopBar() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={dict.nav.searchPlaceholder}
-            className="h-11 w-full rounded-full border border-[#D77A63]/25 bg-ivory/80 pl-5 pr-11 text-sm text-[#88664E] placeholder:text-[#88664E]/45 focus:border-[#D77A63]"
+            className="h-11 w-full rounded-full border border-[#D77A63]/25 bg-ivory/80 pl-5 pr-11 text-sm text-[#8B4513] placeholder:text-[#8B4513]/45 focus:border-[#D77A63]"
           />
           <button
             type="submit"
             aria-label={dict.nav.searchLabel}
-            className="absolute right-1.5 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-[#88664E] transition-colors hover:bg-[#D77A63]/10 hover:text-[#D77A63]"
+            className="absolute right-1.5 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-[#8B4513] transition-colors hover:bg-[#D77A63]/10 hover:text-[#D77A63]"
           >
             <SearchIcon className="h-4.5 w-4.5" />
           </button>

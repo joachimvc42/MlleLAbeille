@@ -34,7 +34,7 @@ export function LangSwitcher() {
           className={`rounded-full px-2 py-1 text-xs font-semibold uppercase tracking-wide transition-colors ${
             l === locale
               ? "bg-[#D77A63] text-ivory"
-              : "text-[#88664E] hover:bg-[#D77A63]/10 hover:text-[#D77A63]"
+              : "text-[#8B4513] hover:bg-[#D77A63]/10 hover:text-[#D77A63]"
           }`}
         >
           {l}

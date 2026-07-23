@@ -72,7 +72,7 @@ export function SoundToggle() {
       aria-pressed={playing}
       aria-label={label}
       title={label}
-      className="flex h-10 w-10 items-center justify-center rounded-full text-[#88664E] transition-colors hover:bg-[#D77A63]/10 hover:text-[#D77A63] disabled:opacity-40"
+      className="flex h-10 w-10 items-center justify-center rounded-full text-[#8B4513] transition-colors hover:bg-[#D77A63]/10 hover:text-[#D77A63] disabled:opacity-40"
       disabled={!available}
     >
       {playing ? (

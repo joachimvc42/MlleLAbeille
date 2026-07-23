@@ -72,7 +72,7 @@ export function SideNav() {
                         : "text-[#a87a58] group-hover:text-rose"
                     }`}
                   />
-                  <span className="text-[0.8rem] font-medium leading-tight text-cocoa-soft">
+                  <span className="text-[0.8rem] font-medium leading-tight text-rose">
                     {label}
                   </span>
                 </Link>
