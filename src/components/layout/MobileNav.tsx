@@ -63,7 +63,7 @@ export function MobileNav() {
         <div className="stitched ml-auto flex h-full w-[300px] flex-col gap-2 overflow-y-auto rounded-l-[2rem] p-6">
           <div className="relative z-10 mb-2 flex items-center justify-between">
             <span className="font-display text-lg font-semibold text-rose">
-              Mlle l’Abeille
+              MlleLAbeille
             </span>
             <button
               type="button"

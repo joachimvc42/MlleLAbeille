@@ -45,7 +45,7 @@ export function TopBar() {
           <BeeLogo className="h-11 w-11 transition-transform duration-300 group-hover:-rotate-6" />
           <span className="leading-tight">
             <span className="font-display block text-xl font-semibold text-rose">
-              Mlle l’Abeille
+              MlleLAbeille
               <span aria-hidden="true" className="ml-0.5 align-super text-[0.6rem]">
                 ♥
               </span>
