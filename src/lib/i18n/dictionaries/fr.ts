@@ -2,7 +2,7 @@ export const fr = {
   common: {
     brand: "MlleLAbeille",
     editorialBrand: "Mademoiselle l’Abeille",
-    tagline: "Douceur · Joie · Petits bonheurs",
+    tagline: "À chaque instant sa douceur",
     discoverAll: "Voir toutes les illustrations",
     seeMore: "Voir plus",
     backHome: "Retour à l’accueil",

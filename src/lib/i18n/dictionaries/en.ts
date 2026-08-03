@@ -4,7 +4,7 @@ export const en: Dictionary = {
   common: {
     brand: "MlleLAbeille",
     editorialBrand: "Mademoiselle l’Abeille",
-    tagline: "Softness · Joy · Little pleasures",
+    tagline: "For every moment, a little sweetness",
     discoverAll: "See all the illustrations",
     seeMore: "See more",
     backHome: "Back home",

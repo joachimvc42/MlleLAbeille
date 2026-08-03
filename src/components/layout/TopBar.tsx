@@ -50,7 +50,7 @@ export function TopBar() {
                 ♥
               </span>
             </span>
-            <span className="block text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-[#D77A63]/70">
+            <span className="block text-[0.68rem] font-medium normal-case tracking-[0.055em] text-[#D77A63]/75">
               {dict.common.tagline}
             </span>
           </span>
