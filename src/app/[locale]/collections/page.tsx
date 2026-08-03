@@ -48,6 +48,8 @@ export default async function CollectionsPage({
       <SectionHeading
         title={dict.home.collectionsTitle}
         intro={dict.home.collectionsIntro}
+        titleCmsKey={`home-collections-title-${locale}`}
+        introCmsKey={`home-collections-intro-${locale}`}
       />
 
       <div className="mt-14 space-y-10">

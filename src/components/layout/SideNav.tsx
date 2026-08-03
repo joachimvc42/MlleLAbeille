@@ -24,16 +24,19 @@ export function SideNav() {
     {
       href: `/${locale}/collections`,
       label: dict.nav.collections,
+      cmsKey: `nav-collections-${locale}`,
       icon: FlowerIcon,
     },
     {
       href: `/${locale}/celebrations`,
       label: dict.nav.celebrations,
+      cmsKey: `nav-celebrations-${locale}`,
       icon: GiftIcon,
     },
     {
       href: `/${locale}/mon-histoire`,
       label: dict.nav.story,
+      cmsKey: `nav-story-${locale}`,
       icon: BookIcon,
     },
   ];
@@ -54,7 +57,7 @@ export function SideNav() {
           className="h-auto w-full [filter:drop-shadow(0_14px_24px_rgba(125,93,72,0.28))]"
         />
         <ul className="absolute inset-x-3 top-[172px] flex h-[268px] flex-col justify-between">
-          {items.map(({ href, label, icon: Icon }) => {
+          {items.map(({ href, label, cmsKey, icon: Icon }) => {
             const active = pathname.startsWith(href);
             return (
               <li key={href}>
@@ -72,7 +75,7 @@ export function SideNav() {
                         : "text-[#a87a58] group-hover:text-rose"
                     }`}
                   />
-                  <span className="text-[0.8rem] font-medium leading-tight text-rose">
+                  <span data-cms={cmsKey} className="text-[0.8rem] font-medium leading-tight text-rose">
                     {label}
                   </span>
                 </Link>

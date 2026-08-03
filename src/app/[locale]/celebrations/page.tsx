@@ -40,6 +40,8 @@ export default async function CelebrationsPage({
       <SectionHeading
         title={dict.home.celebrationsTitle}
         intro={dict.home.celebrationsIntro}
+        titleCmsKey={`home-celebrations-title-${locale}`}
+        introCmsKey={`home-celebrations-intro-${locale}`}
       />
 
       <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

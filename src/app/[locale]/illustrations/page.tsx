@@ -80,10 +80,10 @@ export default async function CataloguePage({
       />
 
       <header className="max-w-2xl">
-        <h1 className="text-4xl font-semibold text-rose">
+        <h1 data-cms={`catalogue-title-${locale}`} className="text-4xl font-semibold text-rose">
           {dict.catalogue.title}
         </h1>
-        <p className="mt-4 leading-relaxed">{dict.catalogue.intro}</p>
+        <p data-cms={`catalogue-intro-${locale}`} className="mt-4 leading-relaxed">{dict.catalogue.intro}</p>
       </header>
 
       {/* Filters as crawlable links */}

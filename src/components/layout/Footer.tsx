@@ -15,16 +15,16 @@ export function Footer({
   const year = new Date().getFullYear();
 
   const explore = [
-    { href: `/${locale}/illustrations`, label: dict.nav.illustrations },
-    { href: `/${locale}/collections`, label: dict.nav.collections },
-    { href: `/${locale}/celebrations`, label: dict.nav.celebrations },
-    { href: `/${locale}/mon-histoire`, label: dict.nav.story },
+    { href: `/${locale}/illustrations`, label: dict.nav.illustrations, cmsKey: `nav-illustrations-${locale}` },
+    { href: `/${locale}/collections`, label: dict.nav.collections, cmsKey: `nav-collections-${locale}` },
+    { href: `/${locale}/celebrations`, label: dict.nav.celebrations, cmsKey: `nav-celebrations-${locale}` },
+    { href: `/${locale}/mon-histoire`, label: dict.nav.story, cmsKey: `nav-story-${locale}` },
   ];
   const help = [
-    { href: `/${locale}/contact`, label: dict.footer.contact },
-    { href: `/${locale}/compte`, label: dict.nav.account },
-    { href: `/${locale}/favoris`, label: dict.nav.favorites },
-    { href: `/${locale}/panier`, label: dict.nav.cart },
+    { href: `/${locale}/contact`, label: dict.footer.contact, cmsKey: `footer-contact-${locale}` },
+    { href: `/${locale}/compte`, label: dict.nav.account, cmsKey: `nav-account-${locale}` },
+    { href: `/${locale}/favoris`, label: dict.nav.favorites, cmsKey: `nav-favorites-${locale}` },
+    { href: `/${locale}/panier`, label: dict.nav.cart, cmsKey: `nav-cart-${locale}` },
   ];
 
   return (
@@ -45,13 +45,13 @@ export function Footer({
               Mademoiselle l’Abeille
             </span>
           </div>
-          <p className="mt-4 max-w-xs text-sm leading-relaxed">
+          <p data-cms={`footer-baseline-${locale}`} className="mt-4 max-w-xs text-sm leading-relaxed">
             {dict.footer.baseline}
           </p>
         </div>
 
         <nav aria-label={dict.footer.explore}>
-          <h2 className="font-display text-base font-semibold text-rose">
+          <h2 data-cms={`footer-explore-title-${locale}`} className="font-display text-base font-semibold text-rose">
             {dict.footer.explore}
           </h2>
           <ul className="mt-4 space-y-2 text-sm">
@@ -61,7 +61,7 @@ export function Footer({
                   href={item.href}
                   className="transition-colors hover:text-rose"
                 >
-                  {item.label}
+                  <span data-cms={item.cmsKey}>{item.label}</span>
                 </Link>
               </li>
             ))}
@@ -69,7 +69,7 @@ export function Footer({
         </nav>
 
         <nav aria-label={dict.footer.help}>
-          <h2 className="font-display text-base font-semibold text-rose">
+          <h2 data-cms={`footer-help-title-${locale}`} className="font-display text-base font-semibold text-rose">
             {dict.footer.help}
           </h2>
           <ul className="mt-4 space-y-2 text-sm">
@@ -79,7 +79,7 @@ export function Footer({
                   href={item.href}
                   className="transition-colors hover:text-rose"
                 >
-                  {item.label}
+                  <span data-cms={item.cmsKey}>{item.label}</span>
                 </Link>
               </li>
             ))}
@@ -87,10 +87,10 @@ export function Footer({
         </nav>
 
         <div>
-          <h2 className="font-display text-base font-semibold text-rose">
+          <h2 data-cms={`footer-newsletter-title-${locale}`} className="font-display text-base font-semibold text-rose">
             {dict.home.newsletterTitle}
           </h2>
-          <p className="mt-4 text-sm leading-relaxed">
+          <p data-cms={`footer-newsletter-text-${locale}`} className="mt-4 text-sm leading-relaxed">
             {dict.home.newsletterText}
           </p>
           <div className="mt-4">
@@ -100,7 +100,7 @@ export function Footer({
       </div>
 
       <div className="border-t border-rose/10 py-5 text-center text-xs text-rose-ink/70">
-        © {year} MlleLAbeille · {dict.footer.copyright} {dict.footer.madeWith}
+        © {year} MlleLAbeille · <span data-cms={`footer-copyright-${locale}`}>{dict.footer.copyright}</span> <span data-cms={`footer-madewith-${locale}`}>{dict.footer.madeWith}</span>
       </div>
     </footer>
   );
