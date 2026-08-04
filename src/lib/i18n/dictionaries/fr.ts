@@ -204,7 +204,7 @@ export const fr = {
     metaDescription:
       "Découvrez l’histoire de Lucie et la naissance de MlleLAbeille, entre la Suisse, l’Indonésie et un livre créé pour sa nièce.",
     paragraphs: [
-      "Moi, c’est Lucie. Originaire de Suisse, je suis partie vivre en Indonésie avec mon compagnon en janvier 2025.",
+      "Bonjour, moi, c’est Lucie. Originaire de Suisse, je suis partie vivre en Indonésie avec mon compagnon en janvier 2025.",
       "Là-bas, l’arrivée de nos deux petits chats, Milo et Nayla, a doucement éveillé ma créativité. J’ai commencé à dessiner et à imaginer des histoires autour de leur quotidien.",
       "Nayla s’est rapidement montrée intriguée par les petites abeilles. Puis, un jour, le bout recourbé d’une moustache de Milo nous a fait sourire : on aurait dit une petite antenne. C’est de la curiosité de Nayla et de cette drôle de moustache de Milo qu’est né un nouveau personnage dans leurs histoires : une petite abeille aventurière, prête à découvrir le monde à leurs côtés.",
       "Pendant que ce petit univers prenait forme, une autre histoire commençait : ma belle-sœur attendait une petite fille. J’ai alors enregistré mes récits pour que ce petit être, déjà si cher à mon cœur, puisse entendre ma voix. C’était ma façon de créer un premier lien avec elle malgré la distance.",

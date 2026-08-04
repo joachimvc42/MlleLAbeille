@@ -205,7 +205,7 @@ export const en: Dictionary = {
     metaDescription:
       "Discover Lucie’s story and the birth of MlleLAbeille, between Switzerland, Indonesia and a little book created for her niece.",
     paragraphs: [
-      "I’m Lucie. Originally from Switzerland, I moved to Indonesia with my partner in January 2025.",
+      "Hi, I’m Lucie. Originally from Switzerland, I moved to Indonesia with my partner in January 2025.",
       "There, the arrival of our two little cats, Milo and Nayla, gently awakened my creativity. I began drawing and imagining stories inspired by their everyday lives.",
       "Nayla soon became fascinated by little bees. Then one day, the curled tip of one of Milo’s whiskers made us smile: it looked just like a tiny antenna. From Nayla’s curiosity and Milo’s funny whisker, a new character was born into their stories: an adventurous little bee, ready to discover the world by their side.",
       "While this little universe was taking shape, another story was beginning: my sister-in-law was expecting a baby girl. I began recording my stories so that this little being, already so dear to my heart, could hear my voice. It was my way of creating a first bond with her despite the distance.",
