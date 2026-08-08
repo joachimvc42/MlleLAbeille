@@ -79,6 +79,18 @@ insert into public.product_variants (id, product_id, name, price_cents, sort_ord
   ('coussin-40',   (select id from public.products where slug='coussin'),  $m${"fr":"40 × 40 cm","en":"16 × 16 in"}$m$, 2790, 1)
 on conflict (id) do nothing;
 
+-- Printify references for the mug variants ("Accent Coffee Mug (11, 15oz)",
+-- Printify shop 28300555). Kept as updates — safe to rerun, and keeps
+-- src/lib/catalogue/data.ts and Supabase in sync. 15oz colours are still
+-- disabled on the Printify product side; enable one before taking live
+-- orders for mug-450.
+update public.product_variants
+  set printify_blueprint_id = 635, printify_print_provider_id = 99, printify_variant_id = 72184
+  where id = 'mug-325';
+update public.product_variants
+  set printify_blueprint_id = 635, printify_print_provider_id = 99, printify_variant_id = 105887
+  where id = 'mug-450';
+
 -- ---------------------------------------------------------------------------
 -- Collections
 -- ---------------------------------------------------------------------------

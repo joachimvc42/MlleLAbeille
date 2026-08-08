@@ -213,14 +213,18 @@ export const products: ProductType[] = [
         id: "mug-325",
         name: { fr: "325 ml", en: "11 oz" },
         priceCents: 1690,
-        printify: { blueprintId: null, printProviderId: null, variantId: null },
+        // Printify: "Accent Coffee Mug (11, 15oz)" — 11oz / Red (default, enabled).
+        printify: { blueprintId: 635, printProviderId: 99, variantId: 72184 },
         available: true,
       },
       {
         id: "mug-450",
         name: { fr: "450 ml", en: "15 oz" },
         priceCents: 1890,
-        printify: { blueprintId: null, printProviderId: null, variantId: null },
+        // Printify: same product, 15oz / Red — enable this colour in the
+        // Printify product's Variants tab before taking 15oz orders live,
+        // it is currently disabled (is_enabled: false) on their side.
+        printify: { blueprintId: 635, printProviderId: 99, variantId: 105887 },
         available: true,
       },
     ],
