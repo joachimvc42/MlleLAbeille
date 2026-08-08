@@ -144,6 +144,7 @@ export const fr = {
     payment: "Paiement",
     paymentSecure: "Paiement sécurisé",
     payWithStripe: "Payer avec Stripe",
+    payWithXendit: "Payer avec Xendit",
     devPayment:
       "Mode démonstration : le paiement en ligne n’est pas encore configuré. Votre commande sera enregistrée comme commande de test.",
     devPay: "Simuler le paiement",

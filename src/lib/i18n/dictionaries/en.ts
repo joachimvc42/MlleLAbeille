@@ -145,6 +145,7 @@ export const en: Dictionary = {
     payment: "Payment",
     paymentSecure: "Secure payment",
     payWithStripe: "Pay with Stripe",
+    payWithXendit: "Pay with Xendit",
     devPayment:
       "Demo mode: online payment is not configured yet. Your order will be recorded as a test order.",
     devPay: "Simulate payment",

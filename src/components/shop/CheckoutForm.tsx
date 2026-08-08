@@ -36,9 +36,9 @@ const COUNTRIES = {
 } as const;
 
 export function CheckoutForm({
-  stripeConfigured,
+  provider,
 }: {
-  stripeConfigured: boolean;
+  provider: "stripe" | "xendit" | "mock";
 }) {
   const { items, subtotalCents, ready, clear } = useCart();
   const { locale, dict } = useI18n();
@@ -196,8 +196,11 @@ export function CheckoutForm({
             {dict.checkout.payment}
           </legend>
           <div className="relative z-10">
-            {stripeConfigured ? (
-              <p className="text-sm">🔒 {dict.checkout.paymentSecure} — Stripe</p>
+            {provider !== "mock" ? (
+              <p className="text-sm">
+                🔒 {dict.checkout.paymentSecure} —{" "}
+                {provider === "stripe" ? "Stripe" : "Xendit"}
+              </p>
             ) : (
               <p className="rounded-2xl bg-honey-whisper px-4 py-3 text-sm">
                 {dict.checkout.devPayment}
@@ -215,9 +218,11 @@ export function CheckoutForm({
             >
               {state === "sending"
                 ? dict.checkout.processing
-                : stripeConfigured
+                : provider === "stripe"
                   ? dict.checkout.payWithStripe
-                  : dict.checkout.devPay}
+                  : provider === "xendit"
+                    ? dict.checkout.payWithXendit
+                    : dict.checkout.devPay}
             </button>
           </div>
         </fieldset>

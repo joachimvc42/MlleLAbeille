@@ -70,7 +70,7 @@ ou plus simplement tester depuis l'app :
   (le site sert aujourd'hui les images depuis `/public`, voir `docs/ASSETS.md` ;
   la migration vers Storage consiste à remplacer `image_path` par l'URL publique
   du bucket `illustrations-web`).
-- Configurer les webhooks Stripe et Printify (voir `docs/DEPLOYMENT.md`).
+- Configurer les webhooks Stripe (ou Xendit) et Printify (voir `docs/DEPLOYMENT.md`).
 
 ## 6. Catalogue : Supabase avec repli local (automatique)
 

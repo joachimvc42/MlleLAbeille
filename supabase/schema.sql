@@ -293,8 +293,8 @@ create table if not exists public.orders (
   subtotal_cents int not null check (subtotal_cents >= 0),
   shipping_cents int not null default 0 check (shipping_cents >= 0),
   total_cents int not null check (total_cents >= 0),
-  payment_provider text check (payment_provider in ('stripe','mock')),
-  payment_reference text,                   -- Stripe session id
+  payment_provider text check (payment_provider in ('stripe','xendit','mock')),
+  payment_reference text,                   -- Stripe session id / Xendit invoice id
   fulfillment_provider text check (fulfillment_provider in ('printify','manual')),
   fulfillment_reference text,               -- Printify order id
   shipping_first_name text not null,
@@ -313,6 +313,12 @@ create index if not exists orders_status_idx on public.orders (status);
 create trigger orders_updated_at
   before update on public.orders
   for each row execute function public.set_updated_at();
+
+-- Widen payment_provider to allow 'xendit' on databases created before it
+-- existed (re-running this script is always safe).
+alter table public.orders drop constraint if exists orders_payment_provider_check;
+alter table public.orders add constraint orders_payment_provider_check
+  check (payment_provider in ('stripe','xendit','mock'));
 
 create table if not exists public.order_items (
   id uuid primary key default gen_random_uuid(),

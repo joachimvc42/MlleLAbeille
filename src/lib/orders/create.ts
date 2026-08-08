@@ -116,7 +116,7 @@ export async function persistOrder(
   order: PricedOrder,
   payload: CheckoutPayload,
   status: OrderStatus,
-  paymentProvider: "stripe" | "mock",
+  paymentProvider: "stripe" | "xendit" | "mock",
   userId: string | null,
 ): Promise<boolean> {
   const admin = getSupabaseAdminClient();

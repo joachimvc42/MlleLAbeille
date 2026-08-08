@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getDictionary } from "@/lib/i18n";
 import { isLocale, type Locale } from "@/lib/i18n/config";
-import { isStripeConfigured } from "@/lib/payments";
+import { activePaymentProvider } from "@/lib/payments";
 import { CheckoutForm } from "@/components/shop/CheckoutForm";
 
 export async function generateMetadata({
@@ -29,7 +29,7 @@ export default async function CheckoutPage({
         {dict.checkout.title}
       </h1>
       <div className="mt-10">
-        <CheckoutForm stripeConfigured={isStripeConfigured()} />
+        <CheckoutForm provider={activePaymentProvider()} />
       </div>
     </div>
   );

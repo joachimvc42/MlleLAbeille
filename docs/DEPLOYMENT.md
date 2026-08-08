@@ -1,4 +1,4 @@
-# Déploiement — Vercel, Supabase, Stripe, Printify
+# Déploiement — Vercel, Supabase, Stripe/Xendit, Printify
 
 ## 1. Vercel
 
@@ -17,21 +17,29 @@
 1. Vercel → Settings → Domains → ajouter `mllelabeille.com` (ou autre).
 2. Suivre les instructions DNS (CNAME `cname.vercel-dns.com`).
 3. Mettre à jour `NEXT_PUBLIC_SITE_URL`, puis re-déployer.
-4. Reporter le domaine dans Supabase (Auth → URL Configuration) et Stripe
-   (webhook endpoint).
+4. Reporter le domaine dans Supabase (Auth → URL Configuration) et
+   Stripe/Xendit (webhook endpoint).
 
 ### Checklist production
 
 - [ ] `npm run lint` + `npm run typecheck` + `npm run build` verts en local
 - [ ] Variables Supabase renseignées + SQL exécuté (`supabase/README.md`)
-- [ ] Un compte admin marqué `is_admin = true`
+- [ ] Un compte admin marqué `is_admin = true` (ou `ADMIN_PASSWORD` changé)
 - [ ] Clés Stripe **live** + webhook configuré + `STRIPE_WEBHOOK_SECRET`
+      — ou, à défaut, `XENDIT_SECRET_KEY` + `XENDIT_WEBHOOK_TOKEN`
 - [ ] Token Printify + `PRINTIFY_SHOP_ID` + variantes mappées (`docs/PRINTIFY.md`)
 - [ ] Illustrations originales déposées + `npm run assets` (`docs/ASSETS.md`)
 - [ ] `NEXT_PUBLIC_SITE_URL` = domaine final
-- [ ] Test de commande complet en mode test Stripe
+- [ ] Test de commande complet en mode test (Stripe ou Xendit)
 
-## 2. Stripe
+## 2. Paiement — Stripe ou Xendit
+
+Stripe est utilisé s'il est configuré ; sinon le checkout bascule
+automatiquement sur Xendit s'il est configuré ; sans aucun des deux, le
+checkout reste en mode démo (clairement affiché). Configurer un seul des
+deux suffit — inutile de faire les deux sections ci-dessous.
+
+### Stripe
 
 1. Créer le compte Stripe (ou utiliser l'existant), récupérer la
    **clé secrète** (`sk_test_…` d'abord) → `STRIPE_SECRET_KEY`.
@@ -44,6 +52,21 @@
 
 Flux : commande → session Stripe (prix recalculés côté serveur) → paiement →
 webhook → commande `paid` dans Supabase → transmission Printify si configuré.
+
+### Xendit
+
+1. Créer le compte Xendit, récupérer la **clé secrète** (mode test d'abord,
+   *Settings → API keys*) → `XENDIT_SECRET_KEY`.
+2. *Settings → Webhooks → Invoices callback* :
+   - URL : `https://<votre-domaine>/api/webhooks/xendit`
+   - Copier le *Verification Token* affiché sur cette page →
+     `XENDIT_WEBHOOK_TOKEN`.
+3. Ne pas renseigner `STRIPE_SECRET_KEY` (ou le retirer) pour que Xendit
+   prenne le relais. Redéployer.
+
+Flux : commande → facture hébergée Xendit → paiement → webhook (`x-callback-
+token` vérifié) → commande `paid` dans Supabase → transmission Printify si
+configuré. Identique au flux Stripe, seul le fournisseur change.
 
 ## 3. Printify
 

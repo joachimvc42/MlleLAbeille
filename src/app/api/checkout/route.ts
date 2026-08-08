@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { checkoutSchema } from "@/lib/checkout/schema";
 import { persistOrder, priceOrder } from "@/lib/orders/create";
-import { createCheckout, isStripeConfigured } from "@/lib/payments";
+import { createCheckout } from "@/lib/payments";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 const siteUrl =
@@ -48,8 +48,9 @@ export async function POST(request: Request) {
     });
 
     if (result.type === "redirect") {
-      // Real payment: order stays pending until the Stripe webhook confirms.
-      await persistOrder(order, payload, "pending", "stripe", userId);
+      // Real payment: order stays pending until the provider's webhook
+      // confirms (Stripe or Xendit).
+      await persistOrder(order, payload, "pending", result.provider, userId);
       return NextResponse.json({ url: result.url, ref: order.ref });
     }
 
@@ -58,7 +59,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       url: confirmationUrl,
       ref: order.ref,
-      demo: !isStripeConfigured(),
+      demo: true,
     });
   } catch (error) {
     console.error("checkout failed", error);
