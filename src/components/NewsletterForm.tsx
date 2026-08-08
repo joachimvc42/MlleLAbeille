@@ -52,12 +52,12 @@ export function NewsletterForm({ compact = false }: { compact?: boolean }) {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder={dict.home.newsletterPlaceholder}
-        className="w-full rounded-full border border-rose/20 bg-ivory px-5 py-3 text-sm placeholder:text-rose-ink/50 focus:border-rose"
+        className="w-full rounded-full border border-[#4A5033]/20 bg-ivory px-5 py-3 text-sm text-[#4A5033] placeholder:text-[#4A5033] focus:border-[#4A5033]"
       />
       <button
         type="submit"
         disabled={state === "sending"}
-        className="btn-rose shrink-0 px-6 py-3 text-sm font-semibold disabled:opacity-60"
+        className="btn-sage shrink-0 px-6 py-3 text-sm font-semibold disabled:opacity-60"
       >
         {state === "sending" ? "…" : dict.home.newsletterCta}
       </button>

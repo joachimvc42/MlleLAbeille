@@ -76,7 +76,15 @@ export default async function CollectionPage({
         >
           {dict.nav.collections}
         </p>
-        <h1 className="mt-4 text-4xl font-semibold text-rose sm:text-5xl">
+        <h1
+          className="mt-4 text-4xl font-semibold sm:text-5xl"
+          style={{
+            color:
+              collection.slug === "la-vie-en-vert"
+                ? "#739149"
+                : collection.accent,
+          }}
+        >
           {collection.name}
         </h1>
         <p className="mt-2 font-semibold text-rose-ink/80">

@@ -24,7 +24,7 @@ export default async function AccountPage({
 
   return (
     <div className="mx-auto max-w-[900px] px-6 py-14 sm:px-10">
-      <h1 className="text-4xl font-semibold text-rose">
+      <h1 data-cms={`account-title-${locale}`} className="text-4xl font-semibold text-rose">
         {dict.account.title}
       </h1>
       <AccountView />

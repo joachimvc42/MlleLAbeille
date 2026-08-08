@@ -53,7 +53,7 @@ export default async function StoryPage({
             className="h-full w-full object-cover"
           />
         </div>
-        <h1 className="mt-8 text-4xl font-semibold text-rose sm:text-5xl">
+        <h1 data-cms={`story-title-${locale}`} className="mt-8 text-4xl font-semibold text-rose sm:text-5xl">
           {dict.story.title}
         </h1>
         <div
@@ -71,12 +71,13 @@ export default async function StoryPage({
           {dict.story.paragraphs.map((paragraph, index) => (
             <p
               key={index}
+              data-cms={`story-paragraph-${index}-${locale}`}
               className={index === 0 ? "font-display text-xl text-rose" : ""}
             >
               {paragraph}
             </p>
           ))}
-          <p className="pt-2 text-right font-display italic text-rose">
+          <p data-cms={`story-signature-${locale}`} className="pt-2 text-right font-display italic text-rose">
             {dict.story.signature}
           </p>
         </div>
@@ -87,7 +88,7 @@ export default async function StoryPage({
           href={`/${locale}/illustrations`}
           className="btn-rose inline-flex items-center gap-2.5 px-7 py-3.5 font-semibold"
         >
-          {dict.common.discoverAll}
+          <span data-cms={`common-discoverall-${locale}`}>{dict.common.discoverAll}</span>
           <ArrowRightIcon className="h-4 w-4" />
         </Link>
       </div>

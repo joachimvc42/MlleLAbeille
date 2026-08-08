@@ -2,7 +2,7 @@ export const fr = {
   common: {
     brand: "MlleLAbeille",
     editorialBrand: "Mademoiselle l’Abeille",
-    tagline: "Douceur · Joie · Petits bonheurs",
+    tagline: "À chaque instant sa douceur",
     discoverAll: "Voir toutes les illustrations",
     seeMore: "Voir plus",
     backHome: "Retour à l’accueil",
@@ -203,16 +203,19 @@ export const fr = {
   story: {
     title: "Mon histoire",
     metaDescription:
-      "L’histoire vraie de Mademoiselle l’Abeille, née d’une naissance en Suisse et d’un cœur resté en Indonésie.",
+      "Découvrez l’histoire de Lucie et la naissance de MlleLAbeille, entre la Suisse, l’Indonésie et un livre créé pour sa nièce.",
     paragraphs: [
-      "Mademoiselle l’Abeille est née un jour très particulier : celui où ma nièce est venue au monde, en Suisse, alors que je vivais à des milliers de kilomètres de là, en Indonésie.",
-      "J’aurais voulu être là — passer la porte de la maternité sur la pointe des pieds, me pencher sur le berceau, murmurer un premier bonjour. Mais la distance en avait décidé autrement.",
-      "Alors j’ai dessiné. Une petite abeille toute ronde, aux joues roses et aux ailes de papier de soie. Une messagère de douceur qui pouvait voyager là où je ne pouvais pas aller : porter des nouvelles, souffler des encouragements, déposer un peu de tendresse sur les jours ordinaires.",
-      "Depuis, Mademoiselle l’Abeille continue son voyage. Elle se pose sur des mugs et des affiches, se glisse dans des cartes d’anniversaire, veille sur les chambres des tout-petits et accompagne les mercis, les amitiés et les moments de calme.",
-      "Elle croit, comme moi, que les petites choses ont une grande valeur : un prénom joliment écrit, une date à ne pas oublier, un mot doux au bon moment.",
-      "Merci d’être entrés dans son petit monde. J’espère qu’il déposera chez vous ce qu’il m’a apporté : de la douceur, de la joie et beaucoup de petits bonheurs.",
+      "Bonjour, moi, c’est Lucie. Originaire de Suisse, je suis partie vivre en Indonésie avec mon compagnon en janvier 2025.",
+      "Là-bas, l’arrivée de nos deux petits chats, Milo et Nayla, a doucement éveillé ma créativité. J’ai commencé à dessiner et à imaginer des histoires autour de leur quotidien.",
+      "Nayla s’est rapidement montrée intriguée par les petites abeilles. Puis, un jour, le bout recourbé d’une moustache de Milo nous a fait sourire : on aurait dit une petite antenne. C’est de la curiosité de Nayla et de cette drôle de moustache de Milo qu’est né un nouveau personnage dans leurs histoires : une petite abeille aventurière, prête à découvrir le monde à leurs côtés.",
+      "Pendant que ce petit univers prenait forme, une autre histoire commençait : ma belle-sœur attendait une petite fille. J’ai alors enregistré mes récits pour que ce petit être, déjà si cher à mon cœur, puisse entendre ma voix. C’était ma façon de créer un premier lien avec elle malgré la distance.",
+      "Ne pouvant pas être présente à sa naissance, j’ai créé un petit livre rien que pour elle. Et c’est ainsi qu’est née MlleLAbeille.",
+      "Elle est devenue notre messagère entre l’Indonésie et la Suisse. À travers elle, nous pouvons raconter notre quotidien à ma nièce, lui transmettre tout notre amour et lui parler aussi des êtres chers de notre famille qui veillent désormais sur elle depuis le ciel. Cette petite abeille, à la fois voyageuse et confidente, franchit toutes les distances pour rester à ses côtés et l’accompagner à chaque étape de sa vie.",
+      "Après ce premier livre, je n’ai plus eu envie de quitter ce petit personnage. MlleLAbeille m’apportait beaucoup de joie et j’ai commencé à l’imaginer dans les moments qui rendent mon propre quotidien plus doux : peindre, jardiner, lire, prendre le thé. Son univers s’est agrandi, scène après scène.",
+      "En partageant ces images avec mon entourage, certains m’ont confié qu’ils aimeraient eux aussi avoir MlleLAbeille à leurs côtés. C’est ce qui m’a donné envie de partager son petit monde avec vous, pour apporter un peu de douceur et de joie à vos journées.",
+      "Aujourd’hui, chacun est libre de voir en MlleLAbeille ce qui lui ressemble et de l’accueillir dans sa propre histoire. Pour moi, elle restera cette petite messagère qui célèbre les moments simples du quotidien : ceux que l’on s’accorde et ceux que l’on partage.",
     ],
-    signature: "— La créatrice de Mademoiselle l’Abeille",
+    signature: "Lucie, créatrice de MlleLAbeille",
   },
   contact: {
     title: "Écrivez-nous",

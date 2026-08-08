@@ -47,19 +47,20 @@ export default async function HomePage({
         <div className="relative z-10 max-w-xl lg:pl-2">
           <h1
             id="hero-title"
+            data-cms={`home-hero-title-${locale}`}
             className="text-center text-4xl font-medium leading-[1.16] text-cocoa sm:text-5xl lg:text-[2.9rem]"
           >
             {dict.home.heroTitle}
           </h1>
           <HeartDashes className="mt-5" />
-          <p className="mt-6 max-w-lg text-lg leading-relaxed text-cocoa-soft sm:text-xl">
+          <p data-cms={`home-hero-text-${locale}`} className="mt-6 max-w-lg text-lg leading-relaxed text-cocoa-soft sm:text-xl">
             {dict.home.heroText}
           </p>
           <Link
             href={`/${locale}/illustrations`}
             className="btn-sage mt-8 inline-flex items-center gap-2.5 px-7 py-3.5 font-semibold"
           >
-            {dict.home.heroCta}
+            <span data-cms={`home-hero-cta-${locale}`}>{dict.home.heroCta}</span>
             <ArrowRightIcon className="h-4 w-4" />
           </Link>
         </div>
@@ -74,19 +75,19 @@ export default async function HomePage({
           className="seasonal-card group grid overflow-hidden rounded-[2.7rem] lg:grid-cols-[0.38fr_0.62fr]"
         >
           <span className="relative z-10 flex flex-col justify-center p-8 sm:p-12">
-            <span className="mb-3 text-xs font-bold uppercase tracking-[0.24em] text-honey-deep">
+            <span data-cms={`home-seasonal-eyebrow-${locale}`} className="mb-3 text-xs font-bold uppercase tracking-[0.24em] text-honey-deep">
               {locale === "fr" ? "Nouvelle collection" : "New collection"}
             </span>
-            <span className="font-display text-3xl text-cocoa sm:text-4xl">
+            <span data-cms={`home-seasonal-title-${locale}`} className="font-display text-3xl text-cocoa sm:text-4xl">
               {locale === "fr" ? "Le printemps des petites abeilles" : "The little bees’ spring"}
             </span>
-            <span className="mt-4 max-w-sm leading-relaxed text-cocoa-soft">
+            <span data-cms={`home-seasonal-text-${locale}`} className="mt-4 max-w-sm leading-relaxed text-cocoa-soft">
               {locale === "fr"
                 ? "Jardiner, lire, flâner au soleil… une collection tendre déclinée au féminin comme au masculin."
                 : "Gardening, reading, lingering in the sun… a gentle collection with feminine and masculine characters."}
             </span>
-            <span className="mt-7 inline-flex items-center gap-2 font-semibold text-olive">
-              {locale === "fr" ? "Découvrir la collection" : "Discover the collection"}
+            <span className="mt-7 inline-flex items-center gap-2 font-semibold text-honey-deep">
+              <span data-cms={`home-seasonal-cta-${locale}`}>{locale === "fr" ? "Découvrir la collection" : "Discover the collection"}</span>
               <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </span>
           </span>
@@ -114,6 +115,8 @@ export default async function HomePage({
             id="featured-title"
             title={dict.home.featuredTitle}
             intro={dict.home.featuredIntro}
+            titleCmsKey={`home-featured-title-${locale}`}
+            introCmsKey={`home-featured-intro-${locale}`}
           />
           <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-6">
             {featured.map((illustration, index) => (
@@ -138,7 +141,7 @@ export default async function HomePage({
               href={`/${locale}/illustrations`}
               className="font-display inline-flex items-center gap-2.5 text-lg font-semibold text-cocoa underline-offset-8 transition-colors hover:text-rose-deep hover:underline"
             >
-              {dict.common.discoverAll}
+              <span data-cms={`common-discoverall-${locale}`}>{dict.common.discoverAll}</span>
               <ArrowRightIcon className="h-4.5 w-4.5" />
             </Link>
             <Image
@@ -164,6 +167,8 @@ export default async function HomePage({
             id="collections-title"
             title={dict.home.collectionsTitle}
             intro={dict.home.collectionsIntro}
+            titleCmsKey={`home-collections-title-${locale}`}
+            introCmsKey={`home-collections-intro-${locale}`}
           />
           <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
             {collections.map((collection) => (
@@ -190,7 +195,15 @@ export default async function HomePage({
                     sizes="112px"
                   />
                 </span>
-                <span className="font-display relative z-10 mt-5 text-xl font-semibold text-rose">
+                <span
+                  className="font-display relative z-10 mt-5 text-xl font-semibold"
+                  style={{
+                    color:
+                      collection.slug === "la-vie-en-vert"
+                        ? "#739149"
+                        : collection.accent,
+                  }}
+                >
                   {collection.name}
                 </span>
                 <span className="relative z-10 mt-2 text-sm leading-relaxed text-rose-ink/90">
@@ -214,6 +227,8 @@ export default async function HomePage({
             id="celebrations-title"
             title={dict.home.celebrationsTitle}
             intro={dict.home.celebrationsIntro}
+            titleCmsKey={`home-celebrations-title-${locale}`}
+            introCmsKey={`home-celebrations-intro-${locale}`}
           />
           <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {celebrations.map((celebration) => (
@@ -268,15 +283,19 @@ export default async function HomePage({
               />
             </div>
             <div className="relative z-10">
-              <h2 id="story-title" className="text-3xl font-semibold text-rose">
+              <h2 id="story-title" data-cms={`home-story-title-${locale}`} className="text-3xl font-semibold text-rose">
                 {dict.home.storyTitle}
               </h2>
-              <p className="mt-4 leading-relaxed">{dict.home.storyTeaser}</p>
+              <p data-cms={`home-story-teaser-${locale}`} className="mt-4 leading-relaxed">{dict.home.storyTeaser}</p>
               <Link
                 href={`/${locale}/mon-histoire`}
                 className="btn-ghost mt-6 inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold"
+                style={{
+                  color: "var(--color-rose)",
+                  borderColor: "color-mix(in srgb, var(--color-rose) 45%, transparent)",
+                }}
               >
-                {dict.home.storyLink}
+                <span data-cms={`home-story-link-${locale}`}>{dict.home.storyLink}</span>
                 <ArrowRightIcon className="h-4 w-4" />
               </Link>
             </div>

@@ -48,6 +48,8 @@ export default async function CollectionsPage({
       <SectionHeading
         title={dict.home.collectionsTitle}
         intro={dict.home.collectionsIntro}
+        titleCmsKey={`home-collections-title-${locale}`}
+        introCmsKey={`home-collections-intro-${locale}`}
       />
 
       <div className="mt-14 space-y-10">
@@ -71,7 +73,15 @@ export default async function CollectionsPage({
               />
             </span>
             <span className="relative z-10 text-center md:text-left">
-              <span className="font-display block text-3xl font-semibold text-rose">
+              <span
+                className="font-display block text-3xl font-semibold"
+                style={{
+                  color:
+                    collection.slug === "la-vie-en-vert"
+                      ? "#739149"
+                      : collection.accent,
+                }}
+              >
                 {collection.name}
               </span>
               <span className="mt-1 block font-semibold text-rose-ink/80">

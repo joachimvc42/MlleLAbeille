@@ -4,7 +4,7 @@ export const en: Dictionary = {
   common: {
     brand: "MlleLAbeille",
     editorialBrand: "Mademoiselle l’Abeille",
-    tagline: "Softness · Joy · Little pleasures",
+    tagline: "For every moment, a little sweetness",
     discoverAll: "See all the illustrations",
     seeMore: "See more",
     backHome: "Back home",
@@ -204,16 +204,19 @@ export const en: Dictionary = {
   story: {
     title: "My story",
     metaDescription:
-      "The true story of Mademoiselle l’Abeille, born from a birth in Switzerland and a heart living in Indonesia.",
+      "Discover Lucie’s story and the birth of MlleLAbeille, between Switzerland, Indonesia and a little book created for her niece.",
     paragraphs: [
-      "Mademoiselle l’Abeille was born on a very special day: the day my niece came into the world in Switzerland, while I was living thousands of kilometres away, in Indonesia.",
-      "I would have loved to be there — to tiptoe through the maternity ward door, lean over the cradle, whisper a first hello. But distance had decided otherwise.",
-      "So I drew. A little round bee with rosy cheeks and tissue-paper wings. A messenger of softness who could travel where I could not: carrying news, whispering encouragement, leaving a little tenderness on ordinary days.",
-      "Since then, Mademoiselle l’Abeille has kept travelling. She lands on mugs and prints, slips into birthday cards, watches over little ones’ bedrooms and joins in the thank-yous, the friendships and the quiet moments.",
-      "She believes, as I do, that small things hold great value: a name beautifully written, a date not to be forgotten, a kind word at the right moment.",
-      "Thank you for stepping into her little world. I hope it brings you what it brought me: softness, joy, and many small moments of happiness.",
+      "Hi, I’m Lucie. Originally from Switzerland, I moved to Indonesia with my partner in January 2025.",
+      "There, the arrival of our two little cats, Milo and Nayla, gently awakened my creativity. I began drawing and imagining stories inspired by their everyday lives.",
+      "Nayla soon became fascinated by little bees. Then one day, the curled tip of one of Milo’s whiskers made us smile: it looked just like a tiny antenna. From Nayla’s curiosity and Milo’s funny whisker, a new character was born into their stories: an adventurous little bee, ready to discover the world by their side.",
+      "While this little universe was taking shape, another story was beginning: my sister-in-law was expecting a baby girl. I began recording my stories so that this little being, already so dear to my heart, could hear my voice. It was my way of creating a first bond with her despite the distance.",
+      "Unable to be there when she was born, I created a little book just for her. And that is how MlleLAbeille was born.",
+      "She became our messenger between Indonesia and Switzerland. Through her, we can share our everyday life with my niece, send her all our love and tell her about the loved ones in our family who now watch over her from up in the sky. This little bee, both traveller and confidante, can cross any distance to stay by her side and accompany her through every stage of her life.",
+      "After that first book, I wasn’t ready to let this little character go. MlleLAbeille brought me so much joy, and I began imagining her in the moments that make my own days feel gentler: painting, gardening, reading or having tea. Her world grew, scene by scene.",
+      "When I shared these images with the people around me, some told me they too would love to have MlleLAbeille by their side. That made me want to share her little world with you, to bring a little gentleness and joy into your days.",
+      "Today, everyone is free to see something of themselves in MlleLAbeille and welcome her into their own story. To me, she will always be this little messenger who celebrates the simple moments of everyday life: the ones we make for ourselves and the ones we share.",
     ],
-    signature: "— The creator of Mademoiselle l’Abeille",
+    signature: "Lucie, creator of MlleLAbeille",
   },
   contact: {
     title: "Write to us",

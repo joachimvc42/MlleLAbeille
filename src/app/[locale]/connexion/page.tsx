@@ -24,7 +24,7 @@ export default async function SignInPage({
 
   return (
     <div className="mx-auto max-w-[460px] px-6 py-20 sm:px-10">
-      <h1 className="text-center text-3xl font-semibold text-rose">
+      <h1 data-cms={`auth-signin-title-${locale}`} className="text-center text-3xl font-semibold text-rose">
         {dict.auth.signInTitle}
       </h1>
       <div className="stitched mt-8 rounded-[2.2rem] p-8">

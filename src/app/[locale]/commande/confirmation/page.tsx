@@ -38,10 +38,10 @@ export default async function ConfirmationPage({
           className="h-full w-full object-cover"
         />
       </div>
-      <h1 className="mt-8 text-4xl font-semibold text-rose">
+      <h1 data-cms={`checkout-confirmation-title-${locale}`} className="mt-8 text-4xl font-semibold text-rose">
         {dict.checkout.confirmationTitle}
       </h1>
-      <p className="mt-4 leading-relaxed">{dict.checkout.confirmationText}</p>
+      <p data-cms={`checkout-confirmation-text-${locale}`} className="mt-4 leading-relaxed">{dict.checkout.confirmationText}</p>
       {ref && (
         <p className="mt-6 inline-block rounded-full bg-honey-whisper px-5 py-2.5 font-semibold">
           {dict.checkout.orderRef} : <span className="font-mono">{ref}</span>
@@ -52,7 +52,7 @@ export default async function ConfirmationPage({
           href={`/${locale}/illustrations`}
           className="btn-rose inline-block px-7 py-3.5 font-semibold"
         >
-          {dict.checkout.backToShop}
+          <span data-cms={`checkout-backtoshop-${locale}`}>{dict.checkout.backToShop}</span>
         </Link>
       </div>
     </div>

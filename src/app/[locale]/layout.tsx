@@ -104,6 +104,11 @@ export default async function RootLayout({
           </main>
           <Footer locale={locale} dict={dict} />
         </Providers>
+        <script
+          src="https://cms-zeta-eosin.vercel.app/embed.js"
+          data-site="mlle-l-abeille"
+          defer
+        />
       </body>
     </html>
   );

@@ -26,7 +26,7 @@ export default async function FavoritesPage({
 
   return (
     <div className="mx-auto max-w-[1300px] px-6 py-14 sm:px-10 lg:pl-[230px]">
-      <h1 className="text-4xl font-semibold text-rose">
+      <h1 data-cms={`favorites-title-${locale}`} className="text-4xl font-semibold text-rose">
         {dict.favorites.title}
       </h1>
       <FavoritesGrid illustrations={illustrations} />

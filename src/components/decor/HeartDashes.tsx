@@ -12,11 +12,11 @@ export function HeartDashes({
   return (
     <div
       aria-hidden="true"
-      className={`flex items-center gap-3 text-rose/60 ${center ? "justify-center" : ""} ${className}`}
+      className={`flex items-center gap-3 text-rose ${center ? "justify-center" : ""} ${className}`}
     >
-      <span className="h-0 w-14 border-t-2 border-dashed border-current opacity-70" />
+      <span className="h-0 w-14 border-t-2 border-dashed border-current" />
       <span className="text-sm leading-none">♥</span>
-      <span className="h-0 w-14 border-t-2 border-dashed border-current opacity-70" />
+      <span className="h-0 w-14 border-t-2 border-dashed border-current" />
     </div>
   );
 }
