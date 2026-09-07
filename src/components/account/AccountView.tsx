@@ -44,6 +44,8 @@ export function AccountView() {
   const loadData = useCallback(
     async (uid: string) => {
       if (!supabase) return;
+      // An existing account in the shared Auth project may not have an Abeille profile yet.
+      await supabase.from("profiles").upsert({ id: uid }, { onConflict: "id", ignoreDuplicates: true });
       const [profileRes, ordersRes, addressesRes] = await Promise.all([
         supabase
           .from("profiles")
@@ -120,9 +122,11 @@ export function AccountView() {
   async function saveProfile(event: FormEvent) {
     event.preventDefault();
     if (!supabase || !user) return;
-    await supabase
+    const { error } = await supabase
       .from("profiles")
-      .upsert({ id: user.id, display_name: displayName });
+      .update({ display_name: displayName })
+      .eq("id", user.id);
+    if (error) return;
     setSavedProfile(true);
     setTimeout(() => setSavedProfile(false), 2500);
   }
@@ -156,7 +160,7 @@ export function AccountView() {
 
   async function signOut() {
     if (!supabase) return;
-    await supabase.auth.signOut();
+    await supabase.auth.signOut({ scope: "local" });
     setUser(null);
   }
 

@@ -1,5 +1,8 @@
 # Supabase — installation & vérification
 
+> Projet partagé : suivre [SUPABASE-SHARED.md](../docs/SUPABASE-SHARED.md).
+> Les scripts ci-dessous ciblent `public` et ne doivent pas être exécutés dans la base partagée.
+
 Base de données, authentification et stockage de la boutique MlleLAbeille.
 
 ## 1. Ordre d'exécution du SQL

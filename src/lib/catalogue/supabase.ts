@@ -1,6 +1,7 @@
 import "server-only";
 
 import { createClient } from "@supabase/supabase-js";
+import { supabaseSchema } from "@/lib/supabase/config";
 import type { LocalizedText } from "@/lib/i18n/config";
 import type {
   CelebrationCategory,
@@ -113,6 +114,7 @@ export async function fetchSupabaseCatalogue(): Promise<CatalogueSnapshot | null
   if (!url || !key) return null;
 
   const supabase = createClient(url, key, {
+    db: { schema: supabaseSchema },
     auth: { persistSession: false, autoRefreshToken: false },
   });
 
