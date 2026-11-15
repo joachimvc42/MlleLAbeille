@@ -113,6 +113,7 @@ export async function fetchSupabaseCatalogue(): Promise<CatalogueSnapshot | null
   if (!url || !key) return null;
 
   const supabase = createClient(url, key, {
+    db: { schema: "boutique" },
     auth: { persistSession: false, autoRefreshToken: false },
   });
 
