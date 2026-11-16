@@ -6,11 +6,11 @@
  */
 export function isSupabaseConfigured(): boolean {
   return Boolean(
-    process.env.NEXT_PUBLIC_SUPABASE_URL &&
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    (process.env.NEXT_PUBLIC_RUMAHYA_URL || process.env.NEXT_PUBLIC_SUPABASE_URL) &&
+      (process.env.NEXT_PUBLIC_RUMAHYA_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY),
   );
 }
 
 export function isSupabaseAdminConfigured(): boolean {
-  return isSupabaseConfigured() && Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY);
+  return isSupabaseConfigured() && Boolean((process.env.NEXT_PUBLIC_RUMAHYA_URL ? process.env.RUMAHYA_SERVICE_ROLE_KEY : process.env.SUPABASE_SERVICE_ROLE_KEY));
 }

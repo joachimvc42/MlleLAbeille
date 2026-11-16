@@ -2,22 +2,22 @@ import "server-only";
 
 import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
-import type { SupabaseClient } from "@supabase/supabase-js";
 
 /**
  * Request-scoped Supabase client for Server Components and Route Handlers.
  * Returns null when Supabase is not configured so callers can degrade
  * gracefully.
  */
-export async function getSupabaseServerClient(): Promise<SupabaseClient | null> {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+export async function getSupabaseServerClient() {
+  const url = (process.env.NEXT_PUBLIC_RUMAHYA_URL || process.env.NEXT_PUBLIC_SUPABASE_URL);
+  const key = (process.env.NEXT_PUBLIC_RUMAHYA_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
   if (!url || !key) return null;
 
   const cookieStore = await cookies();
 
   try {
     return createServerClient(url, key, {
+      db: { schema: "boutique" },
       cookies: {
         getAll() {
           return cookieStore.getAll();
