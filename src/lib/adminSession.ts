@@ -3,21 +3,17 @@ import "server-only";
 import { createHmac, timingSafeEqual } from "crypto";
 import { cookies } from "next/headers";
 
-/**
- * Password-gated admin session. The password lives in ADMIN_PASSWORD
- * (falls back to the boutique's initial password so the workshop works
- * out of the box — set the env var in Vercel to rotate it). The cookie
- * stores an HMAC derived from the password, so changing the password
- * invalidates every existing session.
- */
+/** The server-side admin password also signs the workshop session cookie. */
 export const ADMIN_COOKIE = "mlle_admin";
 
 function adminPassword(): string {
-  return process.env.ADMIN_PASSWORD?.trim() || "Lucie42!";
+  return process.env.ADMIN_PASSWORD?.trim() || "";
 }
 
 export function expectedToken(): string {
-  return createHmac("sha256", adminPassword())
+  const password = adminPassword();
+  if (!password) throw new Error("ADMIN_PASSWORD is required");
+  return createHmac("sha256", password)
     .update("mlle-admin-session-v1")
     .digest("hex");
 }
@@ -29,12 +25,13 @@ function safeEqual(a: string, b: string): boolean {
 }
 
 export function verifyPassword(candidate: string): boolean {
-  return safeEqual(candidate, adminPassword());
+  const password = adminPassword();
+  return Boolean(password) && safeEqual(candidate, password);
 }
 
 export async function hasAdminSession(): Promise<boolean> {
   const store = await cookies();
   const value = store.get(ADMIN_COOKIE)?.value;
-  if (!value) return false;
+  if (!value || !adminPassword()) return false;
   return safeEqual(value, expectedToken());
 }

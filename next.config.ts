@@ -8,7 +8,7 @@ import type { NextConfig } from "next";
  * is fixed.
  */
 function supabaseImageHostname(): string | null {
-  const raw = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim().replace(/^['"]|['"]$/g, "");
+  const raw = (process.env.NEXT_PUBLIC_RUMAHYA_URL || process.env.NEXT_PUBLIC_SUPABASE_URL)?.trim().replace(/^['"]|['"]$/g, "");
   if (!raw) return null;
   try {
     return new URL(raw).hostname;

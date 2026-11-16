@@ -9,8 +9,8 @@ import { createServerClient } from "@supabase/ssr";
  * gracefully.
  */
 export async function getSupabaseServerClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const url = (process.env.NEXT_PUBLIC_RUMAHYA_URL || process.env.NEXT_PUBLIC_SUPABASE_URL);
+  const key = (process.env.NEXT_PUBLIC_RUMAHYA_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
   if (!url || !key) return null;
 
   const cookieStore = await cookies();

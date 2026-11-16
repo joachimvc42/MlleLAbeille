@@ -8,8 +8,8 @@ import { createClient } from "@supabase/supabase-js";
  * the service-role key bypasses RLS and must not reach the browser.
  */
 export function getSupabaseAdminClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const url = (process.env.NEXT_PUBLIC_RUMAHYA_URL || process.env.NEXT_PUBLIC_SUPABASE_URL);
+  const key = (process.env.NEXT_PUBLIC_RUMAHYA_URL ? process.env.RUMAHYA_SERVICE_ROLE_KEY : process.env.SUPABASE_SERVICE_ROLE_KEY);
   if (!url || !key) return null;
 
   try {
